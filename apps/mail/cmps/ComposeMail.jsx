@@ -10,9 +10,9 @@ export function ComposeMail() {
 
     const navigate = useNavigate()
 
-    useEffect(() =>{
-        return onSaveMail()
-    },[])
+    // useEffect(() =>{
+    //     return onSaveMail()
+    // },[])
 
 
     function handleChange({ target }) {

@@ -1,12 +1,12 @@
 const { useState } = React
 
 export function MailPreview({ mail }) {
-    const { from, subject, body, sentAt, isRead } = mail
+    const { from, subject, body, sentAt, createdAt, isRead } = mail
 
     const [isMailRead, setIsMailRead] = useState(isRead)
 
-
-    const date = new Date(sentAt)
+    const dateToFormat = sentAt ? sentAt : createdAt
+    const date = new Date(dateToFormat)
     const currentYear = new Date().getFullYear()
 
     const formattedDate = date.getFullYear() === currentYear
