@@ -7,6 +7,7 @@ _createMails()
 export const mailsService = {
     query,
     getUser,
+    getUnreadCount,
     // get,
     // remove,
     // save,
@@ -20,7 +21,7 @@ export const mailsService = {
 }
 
 function query() {
-    return storageService.query(MAIL_KEY)
+  return storageService.query(MAIL_KEY)
 }
 
 function getUser() {
@@ -31,6 +32,11 @@ function getUser() {
 
     return loggedinUser
 }
+
+// function getUnreadCount() {
+//   const mails = storageService.query(MAIL_KEY)
+//     .then (mails => return mails.filter(mail => !mail.isRead).length)
+// }
 
 
 // ~~~~~~~~~~~~~~~~LOCAL FUNCTIONS~~~~~~~~~~~~~~~~~~~
