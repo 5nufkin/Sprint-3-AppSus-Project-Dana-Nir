@@ -1,0 +1,78 @@
+.compose-mail {
+    flex-direction: column;
+    position: fixed;
+    width: 510px;
+    height: 400px;
+    bottom: 0;
+    right: 55px;
+    background-color: white;
+    box-shadow: 
+  -4px 0 8px rgba(0, 0, 0, 0.08), /* left */
+   4px 0 8px rgba(0, 0, 0, 0.08); /* right */
+
+}
+
+.mail-header {
+    padding: 15px;
+    background-color: #f2f6fc;
+}
+
+.mail-header button {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.compose-mail input {
+    border: none;
+}
+
+.compose-input-container {
+    padding-inline: 15px;
+    padding-bottom: 15px;
+    height: 100%;
+}
+
+.compose-input {
+    gap: 10px;
+    border-bottom: 1.2px solid #d6daee;
+    padding: 10px 10px 10px 0;
+}
+
+input:focus {
+    outline: none;
+    border: none;
+}
+
+input, textarea {
+    font-family: 'Product Sans Regular', sans-serif;
+    font-size: 1rem;
+}
+
+input {
+    width: 100%;
+}
+
+textarea {
+    border: none;
+    height: 100%;
+    padding-top: 10px;
+}
+
+textarea:focus {
+    outline: none;
+    border: none;
+    line-height: 1.4;
+}
+
+.send-btn {
+    border-radius: 999px;
+    border: none;
+    background: #0b57d0;
+    color: white;
+    font-family: 'Product Sans Regular', sans-serif;
+    font-size: 1rem;
+    padding: 10px 30px;
+    margin: 15px;
+    width: max-content;
+}

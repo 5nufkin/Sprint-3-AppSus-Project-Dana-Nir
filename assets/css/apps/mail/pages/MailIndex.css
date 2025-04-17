@@ -1,10 +1,12 @@
  /* mail index  */
 
- /* .mail-app {
-    background-color: #f8fafd;
-    height: 100%;
-    width: 100%;
- } */
+.mail-app {
+   background-color: #f8fafd;
+   /* height: 100%;
+   width: 100%; */
+   grid-auto-flow: column;
+}
 
-
- 
+.mail-app nav {
+   padding: 10px;
+}

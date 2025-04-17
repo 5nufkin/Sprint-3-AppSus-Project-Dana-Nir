@@ -8,9 +8,10 @@ export const mailsService = {
     query,
     getUser,
     getUnreadCount,
+    getEmptyMail,
+    save,
     // get,
     // remove,
-    // save,
     // getEmptyBook,
     // getDefaultFilter,
     // saveReview,
@@ -33,10 +34,32 @@ function getUser() {
     return loggedinUser
 }
 
-// function getUnreadCount() {
-//   const mails = storageService.query(MAIL_KEY)
-//     .then (mails => return mails.filter(mail => !mail.isRead).length)
-// }
+function getUnreadCount() {
+  return storageService.query(MAIL_KEY)
+    .then (mails => {
+      return mails.filter(mail => !mail.isRead).length})
+}
+
+function getEmptyMail() {
+  return {
+    id: '',
+    createdAt: Date.now(),
+    subject: '',
+    body: '',
+    isRead: true,
+    sentAt: '',
+    removedAt: null,
+    from: 'user@appsus.com',
+    to: ''}
+}
+
+function save(mail) {
+  if (mail.id) {
+      return storageService.put(MAIL_KEY, mail)
+  } else {
+      return storageService.post(MAIL_KEY, mail)
+  }
+}
 
 
 // ~~~~~~~~~~~~~~~~LOCAL FUNCTIONS~~~~~~~~~~~~~~~~~~~
@@ -52,7 +75,7 @@ function _createMails() {
           createdAt: 1735881600000,
           subject: "Meeting Tomorrow",
           body: "Let me know what you think.",
-          isRead: false,
+          isRead: true,
           sentAt: 1736054400000,
           removedAt: null,
           from: "alice@example.com",
@@ -107,7 +130,7 @@ function _createMails() {
           createdAt: 1741478400000,
           subject: "Update Required",
           body: "Your app needs an update.",
-          isRead: false,
+          isRead: true,
           sentAt: 1741977600000,
           removedAt: null,
           from: "support@example.com",
@@ -162,7 +185,7 @@ function _createMails() {
           createdAt: 1704000000000,
           subject: "Upcoming Event",
           body: "Join us for an exciting event.",
-          isRead: false,
+          isRead: true,
           sentAt: 1704000101000,
           removedAt: null,
           from: "events@example.com",

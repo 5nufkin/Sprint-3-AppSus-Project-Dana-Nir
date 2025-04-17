@@ -1,0 +1,30 @@
+.mail-boxes button {
+    display: block;
+    border-radius: 999px;
+    border: none;
+    width: 200px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background: none;
+ }
+ 
+ .active {
+    background-color: #d3e3fd;
+    font-family: 'Product Sans bold', sans-serif;
+ }
+
+.compose-btn {
+    background-color: #c2e7ff;
+    padding: 20px;
+    border: none;
+    border-radius: 15px;
+    /* font-weight: 550; */
+}
+
+.compose-btn:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* bottom */
+            -2px 0 4px rgba(0, 0, 0, 0.05), /* left */
+            2px 0 4px rgba(0, 0, 0, 0.05);  /* right */
+}
+  

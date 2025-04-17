@@ -13,13 +13,18 @@ export function MailPreview({ mail }) {
         ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).replace(' ', ', ')
         : date.getFullYear()
 
-    const unread = isMailRead ? '' : 'unread'
+    const unread = isMailRead ? 'read' : 'unread'
 
     return (
     <tr>
         <td className={unread}>{from}</td>
         <td className={unread}>{subject}</td>
-        <td style={{ color: 'grey' }}>{body}</td>
+        <td className={unread === 'read' ? unread : ''} style={{
+            color: 'grey',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+        }}>{body}</td>
         <td className={unread}>{formattedDate}</td>
     </tr>
     )

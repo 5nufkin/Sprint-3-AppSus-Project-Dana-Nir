@@ -1,3 +1,7 @@
 .unread {
     font-family: 'Product Sans bold', sans-serif;
 }
+
+.read {
+    background-color: #f2f6fc;
+}

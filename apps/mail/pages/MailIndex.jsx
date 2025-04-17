@@ -1,6 +1,7 @@
 import { mailsService } from '../services/mail.service.js'
 import { MailList } from '../cmps/MailList.jsx'
-// import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { MailNav } from '../cmps/MailNav.jsx'
+import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 const { useState, useEffect } = React
 // const { Link } = ReactRouterDOM
@@ -8,8 +9,6 @@ const { useState, useEffect } = React
 export function MailIndex() {
 
     const [mails, setMails] = useState([])
-    const [unreadCount, setUnreadCount] = useState(mailsService.getUnreadCount())
-    console.log(unreadCount)
 
     useEffect(() => {
         loadMails()
@@ -28,17 +27,10 @@ export function MailIndex() {
 
     if (!mails) return <div>No emails to show</div>
 
-
     return (
-        <div className='mail-app'>
-            <nav>
-                <button>Inbox <span>{unreadCount}</span></button>
-                <button>Starred</button>
-                <button>Sent</button>
-                <button>Draft</button>
-                <button>Trash</button>
-            </nav>
-            <MailList mails={mails}/>
+        <div className='mail-app grid'>
+            <MailNav />
+            <MailList className="mail-list-container" mails={mails}/>
         </div>
     )
 }
