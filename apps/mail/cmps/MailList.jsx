@@ -3,14 +3,14 @@ import { MailPreview } from "./MailPreview.jsx"
 
 export function MailList({ mails }) {
     return (
-        <section className='mail-list'>
-        <ul className=" clean-list">
-            {mails.map(mail =>
-                <li key={mail.id}>
-                    <MailPreview mail={mail} />
-                </li>
-            )}
-        </ul>
-    </section>
+        <section className='mail-list-container'>
+            <table className="mail-list">
+                <tbody>
+                    {mails.map(mail => (
+                        <MailPreview key={mail.id} mail={mail} />
+                    ))}
+                </tbody>
+            </table>
+        </section>
     )
 }

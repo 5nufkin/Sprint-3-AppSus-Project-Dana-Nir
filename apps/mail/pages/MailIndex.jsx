@@ -14,7 +14,7 @@ export function MailIndex() {
     }, [])
 
     function loadMails() {
-        mailService.query()
+        mailsService.query()
             .then (mails => {
                 setMails(mails)
             })

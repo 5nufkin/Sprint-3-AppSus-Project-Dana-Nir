@@ -1,1 +1,33 @@
- /* mail list */
+.mail-list-container{
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+}
+
+.mail-list {
+    border-collapse: collapse;
+}
+
+.mail-list td {
+    border-top: 1.2px solid #d6daee;
+    padding: 10px;
+     
+}
+    
+.mail-list tr:last-child td {
+    border-bottom: 1.2px solid #d6daee;
+}
+    
+.mail-list tr:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mail-list tr:hover td:last-child {
+    border-right: 1.2px solid #d6daee;
+}
+
+.mail-list tr:hover td:first-child {
+    border-left: 1.2px solid #d6daee;
+}
+
+ 

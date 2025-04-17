@@ -43,11 +43,11 @@ function _createMails() {
     mails.push(
         {  
           id: utilService.makeId(),
-          createdAt: 1705968000000,
+          createdAt: 1735881600000,
           subject: "Meeting Tomorrow",
           body: "Let me know what you think.",
           isRead: false,
-          sentAt: 1705968210000,
+          sentAt: 1736054400000,
           removedAt: null,
           from: "alice@example.com",
           to: "user@appsus.com"
@@ -98,11 +98,11 @@ function _createMails() {
         },
         {
           id: utilService.makeId(),
-          createdAt: 1705500000000,
+          createdAt: 1741478400000,
           subject: "Update Required",
           body: "Your app needs an update.",
           isRead: false,
-          sentAt: 1705500100000,
+          sentAt: 1741977600000,
           removedAt: null,
           from: "support@example.com",
           to: "user@appsus.com"
@@ -164,11 +164,11 @@ function _createMails() {
         },
         {
           id: utilService.makeId(),
-          createdAt: 1703600000000,
+          createdAt: 1744243200000,
           subject: "Password Reset",
           body: "Here is your reset link.",
           isRead: false,
-          sentAt: 1703600055000,
+          sentAt: 1744608000000,
           removedAt: null,
           from: "security@example.com",
           to: "user@appsus.com"
@@ -186,22 +186,22 @@ function _createMails() {
         },
         {
           id: utilService.makeId(),
-          createdAt: 1702800000000,
+          createdAt: 1748553600000,
           subject: "New Features Released!",
           body: "Try the new features in your dashboard.",
           isRead: false,
-          sentAt: 1702800112000,
+          sentAt: 1748736000000,
           removedAt: null,
           from: "features@example.com",
           to: "user@appsus.com"
         },
         {
           id: utilService.makeId(),
-          createdAt: 1702400000000,
+          createdAt: 1755628800000,
           subject: "Happy Birthday!",
           body: "Wishing you a wonderful day.",
           isRead: false,
-          sentAt: 1702400100000,
+          sentAt: 1755888000000,
           removedAt: null,
           from: "greetings@example.com",
           to: "user@appsus.com"
