@@ -20,6 +20,5 @@ export function App() {
                 <Route path="/note" element={<NoteIndex />} />
             </Routes>
         </section>
-        <UserMsg />
     </Router>
 }
