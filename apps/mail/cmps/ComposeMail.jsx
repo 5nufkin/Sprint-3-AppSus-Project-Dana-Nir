@@ -64,10 +64,9 @@ export function ComposeMail() {
                 showErrorMsg('Cannot save mail to drafts!')
             })
     }
-
     const { to, subject, body } = mail
 
-    return (
+    return (  
         <form className="compose-mail flex">
             <section className="mail-header flex space-between">
                 <div>{mailHeader}</div>
