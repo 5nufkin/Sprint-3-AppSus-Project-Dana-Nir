@@ -2,6 +2,7 @@
 
 @import './setup/variables.css';
 @import './setup/typography.css';
+@import './setup/fonts.css';
 
 /* Basics */
 
@@ -12,7 +13,7 @@
 /* Pages */
 @import './pages/home.css';
 
-/* @import './apps/note/pages/NoteIndex.css'; */
+@import './apps/note/pages/NoteIndex.css';
 
 @import './apps/mail/pages/MailIndex.css';
 
@@ -25,3 +26,6 @@
 @import './apps/mail/cmps/MailPreview.css';
 @import './apps/mail/cmps/ComposeMail.css';
 @import './apps/mail/cmps/mailNav.css';
+
+@import url(./apps/note/cmps/NoteList.css);
+@import url(./apps/note/cmps/NotePreview.css);
