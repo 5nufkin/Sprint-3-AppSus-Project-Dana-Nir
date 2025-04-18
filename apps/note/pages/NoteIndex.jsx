@@ -1,4 +1,5 @@
-import { showErrorMsg } from "../../../services/event-bus.service.js"
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
+import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"
 
@@ -6,6 +7,7 @@ const { useState, useEffect } = React
 
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
+  const [newNote, setNewNote] = useState(noteService.getEmptyNote())
 
   useEffect(() => {
     loadNotes()
@@ -18,7 +20,28 @@ export function NoteIndex() {
       })
       .catch(err => {
         console.log('err:', err)
-        showErrorMsg('Could not get notes!')
+        showErrorMsg('Error! Could not get notes.')
+      })
+  }
+
+  function handleChange({ target }) {
+    let { value, name: field, type } = target
+
+    setNewNote(prevNote => ({ ...prevNote, info: { ...prevNote.info, [field]: value } }))
+  }
+
+  function addNote(ev) {
+    ev.preventDefault()
+    const noteToSave = { ...newNote, createdAt: Date.now() }
+    noteService.save(noteToSave)
+      .then(note => {
+        setNotes(prevNotes => [note, ...prevNotes])
+        showSuccessMsg('Note added successfully.')
+        setNewNote(noteService.getEmptyNote())
+      })
+      .catch(err => {
+        console.log('err', err)
+        showErrorMsg('Error! Could not save note.')
       })
   }
 
@@ -26,6 +49,11 @@ export function NoteIndex() {
 
   return (
     <section className="note-index">
+      <AddNote
+        newNote={newNote}
+        handleChange={handleChange}
+        addNote={addNote} />
+
       <NoteList notes={notes} />
     </section>
   )

@@ -3,8 +3,6 @@ import { NotePreview } from "./NotePreview.jsx"
 
 export function NoteList({ notes }) {
 
-  console.log(notes)
-
   return (
     <section className="notes-container">
       {
