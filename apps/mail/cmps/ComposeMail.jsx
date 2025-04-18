@@ -6,14 +6,10 @@ const { useNavigate } = ReactRouterDOM
 
 export function ComposeMail() {
     const [mail, setMail] = useState(mailsService.getEmptyMail())
-    const [ mailHeader, setMailHeader] = useState('New Message')//address this
+    const [ mailHeader, setMailHeader] = useState('New Message')
+    const [isOpen, setIsOpen ] = useState(true)
 
     const navigate = useNavigate()
-
-    // useEffect(() =>{
-    //     return onSaveMail()
-    // },[])
-
 
     function handleChange({ target }) {
         const field = target.name
@@ -29,6 +25,7 @@ export function ComposeMail() {
         }
         
         setMail(prevMail => ({ ...prevMail, [field]: value }))
+        if (field === 'subject') setMailHeader(value)
     }
     
 
@@ -63,32 +60,40 @@ export function ComposeMail() {
                 showErrorMsg('Cannot save mail to drafts!')
             })
     }
+
+    function toggleIsOpen(ev) {
+        ev.preventDefault()
+        setIsOpen(!isOpen)
+    }
+
     const { to, subject, body } = mail
 
     return (  
-        <form className="compose-mail flex">
-            <section className="mail-header flex space-between">
+        <form className={`compose-mail flex ${isOpen ? 'open' : 'collapsed'}`}>
+            <section className={`mail-header flex space-between ${isOpen ? '' : 'close-width'}`} onClick={toggleIsOpen}>
                 <div>{mailHeader}</div>
+                <div>
+                <button onClick={toggleIsOpen}>-</button>
                 <button onClick={onSaveMail}><img src={`../../../assets/img/close.svg`} alt="close icon" 
                 style={{ width: '16px', height: '16px'}} /></button>
+                </div>
             </section>
-            <div className="compose-input-container flex flex-column">
+            {isOpen && <div className="compose-input-container flex flex-column">
                 <div className="compose-input flex">
                 <label htmlFor="to" style={{color: 'grey'}}>To</label>
                 <input value={to} onChange={handleChange} type="email" name="to" id="to" />
                 </div>
                 
                 <div className="compose-input">
-                {/* <label htmlFor="subject" style={{color: 'grey'}}>Subject</label> */}
                 <input value={subject} onChange={handleChange} type="text" name="subject" id="subject"
                 placeholder="Subject" />
                 </div>
 
-                {/* <label htmlFor="body"></label> */}
                 <textarea name="body" id="body" value={body} onChange={handleChange}></textarea>
-            </div>
 
-            <button className="send-btn" onClick={onSendMail}>Send</button>
+            <   button className="send-btn" onClick={onSendMail}>Send</button>
+            </div>}
+
 
         </form>
 

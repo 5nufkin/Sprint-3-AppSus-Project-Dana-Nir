@@ -1,10 +1,9 @@
- /* mail index  */
 
 .mail-app {
    background-color: #f8fafd;
-   /* height: 100%;
-   width: 100%; */
    grid-auto-flow: column;
+   grid-template-columns: auto 1fr;
+   width: 100dvw;
 }
 
 .mail-app nav {

@@ -2,16 +2,23 @@
     border-radius: 15px;
     padding: 10px;
     background-color: white;
+    width: 100%;
 }
 
 .mail-list {
     border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
 }
 
 .mail-list td {
     border-top: 1.2px solid #d6daee;
     padding: 10px;
-     
+}
+
+.mail-list td:last-child {
+    width: 60px;
+    text-align: end;
 }
     
 .mail-list tr:last-child td {

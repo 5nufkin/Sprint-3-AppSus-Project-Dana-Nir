@@ -1,20 +1,28 @@
 .compose-mail {
     flex-direction: column;
     position: fixed;
-    width: 510px;
-    height: 400px;
     bottom: 0;
     right: 55px;
     background-color: white;
     box-shadow: 
-  -4px 0 8px rgba(0, 0, 0, 0.08), /* left */
-   4px 0 8px rgba(0, 0, 0, 0.08); /* right */
-
+    -4px 0 8px rgba(0, 0, 0, 0.08), /* left */
+    4px 0 8px rgba(0, 0, 0, 0.08); /* right */
 }
+
+.compose-mail.open {
+    height: 400px;
+    width: 510px;
+}
+
+.compose-mail.collapsed {
+    height: max-content;
+    width: max-content;
+  }
 
 .mail-header {
     padding: 15px;
     background-color: #f2f6fc;
+    cursor: pointer;
 }
 
 .mail-header button {
@@ -57,6 +65,7 @@ textarea {
     border: none;
     height: 100%;
     padding-top: 10px;
+    resize: none;
 }
 
 textarea:focus {
@@ -73,6 +82,10 @@ textarea:focus {
     font-family: 'Product Sans Regular', sans-serif;
     font-size: 1rem;
     padding: 10px 30px;
-    margin: 15px;
+    /* margin: 15px 0 0 15px; */
     width: max-content;
+}
+
+.close-width {
+    width: 340px;
 }
