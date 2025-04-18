@@ -1,1 +1,7 @@
  /* note list */
+
+ .notes-container {
+   column-count: auto;
+   column-width: 240px;
+   column-gap: 16px;
+ }
