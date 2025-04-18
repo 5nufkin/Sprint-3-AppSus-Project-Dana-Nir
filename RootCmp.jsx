@@ -8,6 +8,8 @@ import { Home } from "./pages/Home.jsx"
 import { MailIndex } from "./apps/mail/pages/MailIndex.jsx"
 import { NoteIndex } from "./apps/note/pages/NoteIndex.jsx"
 import { ComposeMail } from "./apps/mail/cmps/ComposeMail.jsx"
+import { MailList } from "./apps/mail/cmps/MailList.jsx"
+import { MailDetails } from "./apps/mail/cmps/MailDetails.jsx"
 
 
 
@@ -19,7 +21,10 @@ export function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/mail" element={<MailIndex />} >
-                    <Route path="/mail/compose" element={<ComposeMail />} />
+                    <Route index element={<MailList />} />
+                    {/* <Route path="/mail/mail-list" element={<MailList />} /> */}
+                    {/* <Route path="compose" element={<ComposeMail />} /> */}
+                    <Route path=":mailId" element={<MailDetails />} />
                 </Route>
                 <Route path="/note" element={<NoteIndex />} />
             </Routes>

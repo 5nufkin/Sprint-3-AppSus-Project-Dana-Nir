@@ -34,7 +34,6 @@ export function ComposeMail() {
         setMail(prevMail => ({ ...prevMail, sentAt: Date.now() }))
         mailsService.save(mail)
         .then(() => {
-            console.log(mail)
             navigate('/mail')
             showSuccessMsg('Email sent successfully!')
         })

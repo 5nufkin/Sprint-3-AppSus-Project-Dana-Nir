@@ -1,9 +1,9 @@
 import { mailsService } from '../services/mail.service.js'
 
 const { useState, useEffect } = React
-const { Outlet, Link } = ReactRouterDOM
+const { Link } = ReactRouterDOM
 
-export function MailNav() {
+export function MailNav({ onToggleCompose }) {
 
     const [unreadCount, setUnreadCount] = useState()
 
@@ -19,38 +19,36 @@ export function MailNav() {
     const isSelected = ''
 
     return (
-        <nav>
-            <button className="compose-btn">
-                <Link to="/mail/compose">Compose</Link>
-            </button>
+        <nav className="mail-nav">
+            <button className="compose-btn" onClick={onToggleCompose}>Compose</button>
             <div className="mail-boxes">
             <button>
-                <span><img src={`../../../assets/img/inbox${isSelected}.svg`} alt="Inbox icon" 
+                <span><img src={`/assets/img/mail/inbox${isSelected}.svg`} alt="Inbox icon" 
                 style={{ width: '16px', height: '16px', marginRight: '6px' }} />
                 Inbox</span><span>{unreadCount}</span>
             </button>
             <button>
-                <span><img src={`../../../assets/img/starred${isSelected}.svg`} alt="Starred icon" 
+                <span><img src={`/assets/img/mail/starred${isSelected}.svg`} alt="Starred icon" 
                 style={{ width: '16px', height: '16px', marginRight: '6px' }} />
                 Starred</span><span></span>
             </button>
             <button>
-                <span><img src={`../../../assets/img/sent${isSelected}.svg`} alt="Sent icon" 
+                <span><img src={`/assets/img/mail/sent${isSelected}.svg`} alt="Sent icon" 
                 style={{ width: '16px', height: '16px', marginRight: '6px' }} />
                 Sent</span><span></span>
             </button>
             <button>
-                <span><img src={`../../../assets/img/draft${isSelected}.svg`} alt="Draft icon" 
+                <span><img src={`/assets/img/mail/draft${isSelected}.svg`} alt="Draft icon" 
                 style={{ width: '16px', height: '16px', marginRight: '6px' }} />
                 Draft</span><span></span>
             </button>
             <button>
-                <span><img src={`../../../assets/img/trash${isSelected}.svg`} alt="Trash icon" 
+                <span><img src={`/assets/img/mail/trash${isSelected}.svg`} alt="Trash icon" 
                 style={{ width: '16px', height: '16px', marginRight: '6px' }} />
                 Trash</span><span></span>
             </button>
             </div>
-            <Outlet />
+            {/* <Outlet /> */}
         </nav>
     )
 }
