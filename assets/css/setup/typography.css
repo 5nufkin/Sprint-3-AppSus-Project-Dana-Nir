@@ -1,9 +1,24 @@
 @font-face {
-    font-family: 'Product Sans Regular';
-    src: url('../../fonts/ProductSans-Regular.ttf');
+  font-family: 'Product Sans Regular';
+  src: url('../../fonts/ProductSans-Regular.ttf');
 }
 
 @font-face {
-    font-family: 'Product Sans Bold';
-    src: url('../../fonts/ProductSans-Bold.ttf');
+  font-family: 'Product Sans Medium';
+  src: url('/assets/fonts/ProductSans-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Product Sans Bold';
+  src: url('../../fonts/ProductSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: google-sans-regular;
+  src: url('/assets/fonts/GoogleSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: google-sans-medium;
+  src: url('/assets/fonts/GoogleSans-Medium.ttf');
 }
