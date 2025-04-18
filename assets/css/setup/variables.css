@@ -4,5 +4,10 @@
   /* NOTE APP*/
   --clr-black: #000000;
   --clr-white: #fff;
-  --clr-note-txt: #202124;
+  --clr-txt-base: #202124;
+
+  /* Buttons */
+  --clr-btn-base: #3C4043;
+  --clr-btn-hover: #202124;
+  --clr-btn-hover-bg: #5f636828;
 }
