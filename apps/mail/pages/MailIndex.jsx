@@ -4,15 +4,16 @@ import { MailNav } from '../cmps/MailNav.jsx'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 const { useState, useEffect } = React
-// const { Link } = ReactRouterDOM
+const { useLocation  } = ReactRouterDOM
 
 export function MailIndex() {
 
     const [mails, setMails] = useState([])
+    const location = useLocation()
 
     useEffect(() => {
         loadMails()
-    }, [])
+    }, [[location.pathname]])
 
     function loadMails() {
         mailsService.query()

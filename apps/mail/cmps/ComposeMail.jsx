@@ -50,7 +50,6 @@ export function ComposeMail() {
     function onSaveMail(ev) {
         if (ev) ev.preventDefault()
         if (!mail.subject && !mail.to && !mail.body) {
-            console.log(mail)
             navigate('/mail')
             return
         }
