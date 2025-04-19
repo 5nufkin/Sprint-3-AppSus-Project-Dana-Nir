@@ -12,13 +12,9 @@ export const mailsService = {
     save,
     get,
     remove,
-    // getEmptyBook,
+    getMailIdx,
+    getMailsCount,
     // getDefaultFilter,
-    // saveReview,
-    // removeReview,
-    // getGoogleBooks,
-    // addGoogleBook,
-    // getEmptyReview
 }
 
 function query() {
@@ -38,6 +34,12 @@ function getUnreadCount() {
   return storageService.query(MAIL_KEY)
     .then (mails => {
       return mails.filter(mail => !mail.isRead).length})
+}
+
+function getMailsCount() {
+  return storageService.query(MAIL_KEY)
+    .then (mails => {
+      return mails.length})
 }
 
 function getEmptyMail() {
@@ -67,6 +69,12 @@ function get(mailId) {
 
 function remove(mailId) {
   return storageService.remove(MAIL_KEY, mailId)
+}
+
+function getMailIdx(mailId) {
+  return storageService.query(MAIL_KEY)
+    .then (mails => {
+      return mails.findIndex(mail => mail.id === mailId)})
 }
 
 // ~~~~~~~~~~~~~~~~LOCAL FUNCTIONS~~~~~~~~~~~~~~~~~~~

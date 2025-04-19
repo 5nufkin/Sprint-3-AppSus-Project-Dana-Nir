@@ -18,13 +18,12 @@ export function MailIndex() {
 
     useEffect(() => {
         loadMails()
-    }, [location.pathname])
+    }, [location.pathname, mails])
 
     function loadMails() {
         mailsService.query()
             .then (mails => {
-                setMails(mails)
-                console.log(mails)
+                setMails([...mails])
             })
             .catch(err => {
                 console.log('err:', err)
@@ -40,8 +39,10 @@ export function MailIndex() {
 
     function onMoveMailToTrash(mailToMove) {
         // setIsLoading(true)
-        mailsService.save(mailToMove)
-            .then(() => {
+        return mailsService.save(mailToMove)
+            .then(() => mailsService.query())
+            .then(mails => {
+                setMails([...mails])
                 showSuccessMsg('Moved email to trash')
             })
             .catch(err => {
@@ -51,19 +52,25 @@ export function MailIndex() {
     }
 
     function markAsRead(mailToRead) {
-        console.log(mailToRead)
-        mailsService.save(mailToRead)
+        return mailsService.save(mailToRead)
+            .then(() => mailsService.query())
+            .then(mails => {
+                setMails([...mails])
+            })
+            .catch(err => {
+                console.log('Failed to mark as read:', err)
+            })
     }
 
     return (
         <div className='mail-app grid'>
-            <MailNav onToggleCompose={onToggleCompose} />
+            <MailNav onToggleCompose={onToggleCompose} mails={mails} />
             {/* <MailList className="mail-list-container" mails={mails}/> */}
             <div>
             <Outlet context={{
                 onMoveMailToTrash,
                 markAsRead,
-                ...(mailId ? {} : { mails, className: 'mail-list-container' })
+                ...(mailId ? {loadMails} : { mails, className: 'mail-list-container' })
             }} />
             </div>
 

@@ -3,13 +3,13 @@ import { mailsService } from '../services/mail.service.js'
 const { useState, useEffect } = React
 const { Link } = ReactRouterDOM
 
-export function MailNav({ onToggleCompose }) {
+export function MailNav({ onToggleCompose, mails }) {
 
     const [unreadCount, setUnreadCount] = useState()
 
     useEffect(() => {
         getUnreadCount()
-    }, [])
+    }, [mails])
 
     function getUnreadCount() {
         mailsService.getUnreadCount()

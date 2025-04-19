@@ -13,8 +13,8 @@ export function MailPreview({ mail, markAsRead }) {
     const currentYear = new Date().getFullYear()
 
     function onShowMail() {
-        navigate(`/mail/${mail.id}`)
         markAsRead({ ...mail, isRead: true })
+        navigate(`/mail/${mail.id}`)
     }
 
     const formattedDate = date.getFullYear() === currentYear

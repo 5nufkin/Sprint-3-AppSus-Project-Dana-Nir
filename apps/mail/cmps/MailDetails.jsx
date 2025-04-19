@@ -13,7 +13,7 @@ export function MailDetails() {
 
     const user = mailsService.getUser().email
     const navigate = useNavigate()
-    const { onMoveMailToTrash, markAsRead } = useOutletContext() || {}
+    const { onMoveMailToTrash, markAsRead, loadMails } = useOutletContext() || {}
     
     useEffect(() => {
         loadMail()
@@ -65,7 +65,7 @@ export function MailDetails() {
           
     return (
         <section className="mail-details">
-            <MailHeader mail={mail} onBack={onBack} 
+            <MailHeader key={mail.id} mail={mail} onBack={onBack} 
             onMoveMailToTrash={onMoveMailToTrash} markAsRead={markAsRead}/>
 
             <div className="mail-subject flex space-between">

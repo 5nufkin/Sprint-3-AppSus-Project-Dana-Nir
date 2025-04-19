@@ -1,17 +1,33 @@
+import { mailsService } from '../services/mail.service.js'
+
+const { useState, useEffect } = React
 const { Link, useNavigate } = ReactRouterDOM
 
 export function MailHeader({ mail, onBack, onMoveMailToTrash, markAsRead }) {
 
+    const [mailIdx, setMailIdx] = useState()
+    const [mailsCount, setMailsCount] = useState()
     const navigate = useNavigate()
 
-    function onRemove() {
-        onMoveMailToTrash({ ...mail, removedAt: Date.now() })
+    useEffect(() => {
+        getIndexAndLength()
+    }, [])
+
+    async function onRemove() {
+        await onMoveMailToTrash({ ...mail, removedAt: Date.now() })
+        navigate('/mail')
+    }
+    
+    async function onUnread() {
+        await markAsRead({ ...mail, isRead: false })
         navigate('/mail')
     }
 
-    function onUnread() {
-        markAsRead({ ...mail, isRead: false })
-        navigate('/mail')
+    function getIndexAndLength() {
+        mailsService.getMailIdx(mail.id)
+            .then (mailIdx => setMailIdx(mailIdx + 1))
+        mailsService.getMailsCount()
+            .then (mailsCount => setMailsCount(mailsCount))
     }
 
     return (
@@ -40,7 +56,7 @@ export function MailHeader({ mail, onBack, onMoveMailToTrash, markAsRead }) {
 
                     </div>
                     <div className="flex">
-                        <p><span>index</span> of <span>length</span></p>
+                        <p><span>{mailIdx}</span> of <span>{mailsCount}</span></p>
                         <button><Link to={`/mail/${mail.nextMailId}`}>
                             <img src={'/assets/img/mail/prevmail.svg'} alt="Inbox icon" 
                         style={{ width: '20px', height: '20px', transform: 'scaleX(-1)' }} />
