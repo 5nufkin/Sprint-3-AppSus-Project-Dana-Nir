@@ -1,4 +1,4 @@
-import { AddCollaboratorIcon, TrashIcon, MoreOptionsIcon, PaletteIcon, ReminderBellIcon, ImageIcon } from "./Icons.jsx"
+import { AddCollaboratorIcon, TrashIcon, MoreOptionsIcon, PaletteIcon, AddReminderBellIcon, ImageIcon } from "./Icons.jsx"
 
 
 export function NoteButtons({ onTrashNote, className = '' }) {
@@ -10,7 +10,7 @@ export function NoteButtons({ onTrashNote, className = '' }) {
       </button>
 
       <button className="note-icon-btn" title="Remind me">
-        <ReminderBellIcon />
+        <AddReminderBellIcon />
       </button>
 
       <button className="note-icon-btn" title="Collaborator">

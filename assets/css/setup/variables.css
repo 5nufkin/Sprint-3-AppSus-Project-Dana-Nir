@@ -15,4 +15,10 @@
   --clr-txt-placeholder: #000000b3;
   --clr-input-icons: #747474;
   --clr-input-border: #dadce0;
+
+  /* SIDE-BAR */
+  --clr-sb-icon: #5f6368;
+  --clr-sb-icon-selected: #202124;
+  --clr-sb-hover: #f1f3f4;
+  --clr-sb-selected: #feefc3;
 }
