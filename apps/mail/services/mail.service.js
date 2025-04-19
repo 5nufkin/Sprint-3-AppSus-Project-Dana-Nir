@@ -93,6 +93,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1700400077000,
         removedAt: null,
+        isStarred: false,
         from: "feedback@example.com",
         to: "user@appsus.com"
       },
@@ -104,6 +105,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1700800020000,
         removedAt: null,
+        isStarred: false,
         from: "calendar@example.com",
         to: "user@appsus.com"
       },
@@ -115,6 +117,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1701200123000,
         removedAt: null,
+        isStarred: false,
         from: "lottery@example.com",
         to: "user@appsus.com"
       },
@@ -126,6 +129,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1701600066000,
         removedAt: null,
+        isStarred: false,
         from: "billing@example.com",
         to: "user@appsus.com"
       },
@@ -137,6 +141,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1702000200000,
         removedAt: null,
+        isStarred: false,
         from: "reports@example.com",
         to: "user@appsus.com"
       },
@@ -148,6 +153,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1703200203000,
         removedAt: null,
+        isStarred: false,
         from: "partner@example.com",
         to: "user@appsus.com"
       },
@@ -159,6 +165,7 @@ function _createMails() {
         isRead: true,
         sentAt: 1704000101000,
         removedAt: null,
+        isStarred: false,
         from: "events@example.com",
         to: "user@appsus.com"
       },
@@ -170,6 +177,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1704300154000,
         removedAt: null,
+        isStarred: false,
         from: "orders@example.com",
         to: "user@appsus.com"
       },
@@ -181,6 +189,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1704600056000,
         removedAt: null,
+        isStarred: false,
         from: "deals@example.com",
         to: "user@appsus.com"
       },
@@ -192,6 +201,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1704900155000,
         removedAt: null,
+        isStarred: false,
         from: "momo@momo.com",
         to: "user@appsus.com"
       },
@@ -203,6 +213,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1705100033000,
         removedAt: null,
+        isStarred: false,
         from: "travel@example.com",
         to: "user@appsus.com"
       },
@@ -214,6 +225,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1706000211000,
         removedAt: null,
+        isStarred: false,
         from: "sales@example.com",
         to: "user@appsus.com"
       },
@@ -225,6 +237,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1707000123000,
         removedAt: null,
+        isStarred: false,
         from: "dave@example.com",
         to: "user@appsus.com"
       },
@@ -236,6 +249,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1707782486000,
         removedAt: null,
+        isStarred: false,
         from: "carol@example.com",
         to: "user@appsus.com"
       },
@@ -247,6 +261,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1708387335000,
         removedAt: null,
+        isStarred: false,
         from: "bob@example.com",
         to: "user@appsus.com"
       },
@@ -258,6 +273,7 @@ function _createMails() {
         isRead: true,
         sentAt: 1736054400000,
         removedAt: null,
+        isStarred: false,
         from: "alice@example.com",
         to: "user@appsus.com"
       },
@@ -269,6 +285,7 @@ function _createMails() {
         isRead: true,
         sentAt: 1741977600000,
         removedAt: null,
+        isStarred: false,
         from: "support@example.com",
         to: "user@appsus.com"
       },
@@ -280,6 +297,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1744608000000,
         removedAt: null,
+        isStarred: false,
         from: "security@example.com",
         to: "user@appsus.com"
       },
@@ -291,6 +309,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1748736000000,
         removedAt: null,
+        isStarred: false,
         from: "features@example.com",
         to: "user@appsus.com"
       },
@@ -302,6 +321,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1755888000000,
         removedAt: null,
+        isStarred: false,
         from: "greetings@example.com",
         to: "user@appsus.com"
       }

@@ -31,3 +31,11 @@
 .flex-column {
     flex-direction: column;
 }
+
+.display-inline {
+    display: inline;
+}
+
+.max-content {
+    width: max-content;
+}

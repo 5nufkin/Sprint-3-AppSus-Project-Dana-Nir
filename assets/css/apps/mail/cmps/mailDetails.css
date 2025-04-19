@@ -1,3 +1,114 @@
+.mail-content {
+    grid-template-columns: 48px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+    "empty subject"
+    "avatar recipients"
+    "avatar body"
+    "avatar send";
+    gap: 10px;
+}
+
 .mail-details-header {
-    /* position: fixed; */
+    grid-template-columns: 48px 1fr;
+    /* grid-template-rows: auto auto 1fr auto; */
+    grid-template-areas:
+    "back header";
+    gap: 10px;
+}
+
+.mail-details button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mail-details img {
+    height: 20px;
+    width: 20px;
+}
+
+.mail-details button:hover {
+    background: #f1f3f4;
+
+}
+
+.star-btn .star-icon {
+    fill: none;
+    transition: fill 0.2s;
+}
+  
+.star-btn.starred .star-icon {
+    fill: gold;
+    stroke: gold;
+}
+
+.mail-subject p:not(.folder-tag), .mail-details-header p, .sent-at {
+    padding: 6px;
+}
+
+.folder-tag {
+    color: #666666;
+    background-color: #dddddd;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 2px 4px; 
+    height: 16px;
+}
+
+.mail-subject h1 {
+    font-size: 22px;
+}
+
+.mail-recipients p {
+    color: #666666;
+    font-size: 12px;
+}
+
+.mail-details .mail-recipients {
+    grid-area: recipients;
+}
+  
+.mail-details .body {
+    grid-area: body;
+    width: 100%;
+    min-height: 120px;
+}
+  
+.mail-details .send-options {
+    grid-area: send;
+    display: flex;
+    gap: 10px;
+}
+
+.mail-subject {
+    grid-area: subject;
+}
+
+.details-header {
+    gap: 15px;
+    grid-area: header;
+}
+
+.empty {
+    grid-area: empty;
+}
+
+.back-btn {
+    grid-area: back;
+}
+
+.send-options button {
+    gap: 6px;
+    border-radius: 999px;
+    border: 1px solid #444746;
+    background: white;
+    width: max-content;
+    padding: 16px;
 }

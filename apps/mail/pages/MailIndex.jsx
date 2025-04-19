@@ -75,11 +75,21 @@ export function MailIndex() {
     // }
 
     function markAsRead(mailToRead) {
+        console.log(mailToRead)
         mailsService.save(mailToRead)
             .then(setMails(mails => [...mails.map(mail => mail.id === mailToRead.id ? mailToRead : mail)]))
             .catch(err => {
                 console.log('Failed to mark as read:', err)
             })
+    }
+
+    function markAsStarred(mailToStar) {
+        mailToStar.isStarred = !mailToStar.isStarred
+        mailsService.save(mailToStar)
+            .then(setMails(mails => [...mails.map(mail => mail.id === mailToStar.id ? mailToStar : mail)]))
+            .catch(err => {
+                console.log('Failed to mark as read:', err)
+        })
     }
 
     return (
@@ -90,7 +100,7 @@ export function MailIndex() {
             <Outlet context={{
                 onMoveMailToTrash,
                 markAsRead,
-                ...(mailId ? {loadMails} : { mails, className: 'mail-list-container' })
+                ...(mailId ? {markAsStarred} : { mails })
             }} />
             </div>
 
