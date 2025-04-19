@@ -1,3 +1,7 @@
+.mail-nav {
+    /* position: fixed; */
+}
+
 .mail-boxes button {
     display: block;
     border-radius: 999px;
