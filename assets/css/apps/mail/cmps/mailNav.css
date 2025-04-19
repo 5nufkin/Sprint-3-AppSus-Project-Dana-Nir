@@ -6,29 +6,66 @@
     display: block;
     border-radius: 999px;
     border: none;
-    width: 200px;
+    width: 232px;
+    height: 32px;
     padding: 10px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     background: none;
  }
- 
- .active {
-    background-color: #d3e3fd;
-    font-family: 'Product Sans bold', sans-serif;
+
+ .mail-boxes button:hover {
+    background: #f1f3f4;
+ }
+
+ .mail-boxes button.active {
+    background: #d3e3fd;
  }
 
 .compose-btn {
     background-color: #c2e7ff;
-    padding: 20px;
+    padding: 18px 24px;
     border: none;
-    border-radius: 15px;
-    /* font-weight: 550; */
+    border-radius: 16px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    font-family: 'google-sans-medium';
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),
+    0 2px 6px rgba(60, 64, 67, 0.15);
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+    gap: 15px;
+}
+
+.compose-btn img {
+    height: 20px;
+    width: 20px;
+    margin: 0;
 }
 
 .compose-btn:hover {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* bottom */
-            -2px 0 4px rgba(0, 0, 0, 0.05), /* left */
-            2px 0 4px rgba(0, 0, 0, 0.05);  /* right */
+    background-color: #b3d7f5;
+    box-shadow: 0 3px 6px rgba(60, 64, 67, 0.3),
+              0 6px 10px rgba(60, 64, 67, 0.15);
+}
+
+.mail-boxes span {
+    align-content: center;
+}
+
+button span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mail-boxes img {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+}
+
+.selected {
+    font-family: 'Product Sans Bold';
 }
   
