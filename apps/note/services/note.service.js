@@ -9,6 +9,9 @@ var demoNotes = [
     createdAt: 1687526400000,
     type: 'NoteTxt',
     isPinned: false,
+    style: {
+      backgroundColor: '#ffffff'
+    },
     info: {
       title: 'Grocery List',
       txt: 'Buy groceries: eggs, almond milk, avocados, and coffee filters'
@@ -19,6 +22,9 @@ var demoNotes = [
     createdAt: 1670985600000,
     type: 'NoteTxt',
     isPinned: false,
+    style: {
+      backgroundColor: '#ffffff'
+    },
     info: {
       title: '',
       txt: 'Wi-Fi password at mom’s: sunshine2022!'
@@ -29,6 +35,9 @@ var demoNotes = [
     createdAt: 1656729600000,
     type: 'NoteTxt',
     isPinned: false,
+    style: {
+      backgroundColor: '#ffffff'
+    },
     info: {
       title: 'Packing List',
       txt: 'Things to pack: charger, toothbrush, hiking shoes, sunscreen'
@@ -39,6 +48,9 @@ var demoNotes = [
     createdAt: 1664668800000,
     type: 'NoteTxt',
     isPinned: false,
+    style: {
+      backgroundColor: '#ffffff'
+    },
     info: {
       title: '',
       txt: 'Reminder: renew passport before February'
@@ -49,6 +61,9 @@ var demoNotes = [
     createdAt: 1644883200000,
     type: 'NoteTxt',
     isPinned: false,
+    style: {
+      backgroundColor: '#ffffff'
+    },
     info: {
       title: 'Book Wishlist',
       txt: 'Books to check out: “Atomic Habits”, “The Midnight Library”, “Sapiens”'
@@ -95,14 +110,14 @@ var demoNotes = [
   }
 ]
 
-
 _createNotes()
 
 export const noteService = {
   query,
   get,
   remove,
-  save
+  save,
+  getEmptyNote,
 }
 
 function query() {
@@ -114,23 +129,41 @@ function get() {
 
 }
 
-function remove() {
-
+function remove(noteId) {
+  // return Promise.reject('Oh No!')
+  return storageService.remove(NOTE_KEY, noteId)
 }
 
-function save() {
+function save(note) {
+  if (note.id) {
+    return storageService.put(NOTE_KEY, note)
 
+  } else {
+    return storageService.post(NOTE_KEY, note)
+  }
 }
 
 function _createNotes() {
   let notes = utilService.loadFromStorage(NOTE_KEY)
   if (!notes || !notes.length) {
     notes = demoNotes
-    // notes = [...demoNotes]
-    console.log(notes)
-    console.log(demoNotes)
     utilService.saveToStorage(NOTE_KEY, demoNotes)
 
+  }
+}
+
+function getEmptyNote() {
+  return {
+    createdAt: null,
+    type: 'NoteTxt',
+    isPinned: false,
+    style: {
+      backgroundColor: ''
+    },
+    info: {
+      title: '',
+      txt: '',
+    }
   }
 }
 
