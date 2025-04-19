@@ -37,26 +37,46 @@ export function MailIndex() {
         setIsComposeOpen(!isComposeOpen);
     }
 
+    // function onMoveMailToTrash(mailToMove) {
+    //     // setIsLoading(true)
+    //     return mailsService.save(mailToMove)
+    //         .then(() => mailsService.query())
+    //         .then(mails => {
+    //             setMails([...mails])
+    //             showSuccessMsg('Moved email to trash')
+    //         })
+    //         .catch(err => {
+    //             console.log('Cannot move mail to trash!:', err)
+    //             showErrorMsg('Cannot move mail to trash!')
+    //         })
+
     function onMoveMailToTrash(mailToMove) {
         // setIsLoading(true)
         return mailsService.save(mailToMove)
-            .then(() => mailsService.query())
-            .then(mails => {
-                setMails([...mails])
-                showSuccessMsg('Moved email to trash')
-            })
+        .then(() => {
+            setMails(mails => [...mails.map(mail => mail.id === mailToMove.id ? mailToMove : mail)])
+            showSuccessMsg('Moved email to trash')
+        })
             .catch(err => {
                 console.log('Cannot move mail to trash!:', err)
                 showErrorMsg('Cannot move mail to trash!')
             })
     }
 
+    // function markAsRead(mailToRead) {
+    //     return mailsService.save(mailToRead)
+    //         .then(() => mailsService.query())
+    //         .then(mails => {
+    //             setMails([...mails])
+    //         })
+    //         .catch(err => {
+    //             console.log('Failed to mark as read:', err)
+    //         })
+    // }
+
     function markAsRead(mailToRead) {
-        return mailsService.save(mailToRead)
-            .then(() => mailsService.query())
-            .then(mails => {
-                setMails([...mails])
-            })
+        mailsService.save(mailToRead)
+            .then(setMails(mails => [...mails.map(mail => mail.id === mailToRead.id ? mailToRead : mail)]))
             .catch(err => {
                 console.log('Failed to mark as read:', err)
             })

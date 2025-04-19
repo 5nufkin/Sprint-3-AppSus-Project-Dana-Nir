@@ -13,13 +13,21 @@ export function MailHeader({ mail, onBack, onMoveMailToTrash, markAsRead }) {
         getIndexAndLength()
     }, [])
 
-    async function onRemove() {
-        await onMoveMailToTrash({ ...mail, removedAt: Date.now() })
+    // async function onRemove() {
+    //     await onMoveMailToTrash({ ...mail, removedAt: Date.now() })
+    //     navigate('/mail')
+    // }
+    function onRemove() {
+        onMoveMailToTrash({ ...mail, removedAt: Date.now() })
         navigate('/mail')
     }
     
-    async function onUnread() {
-        await markAsRead({ ...mail, isRead: false })
+    // async function onUnread() {
+    //     await markAsRead({ ...mail, isRead: false })
+    //     navigate('/mail')
+    // }
+    function onUnread() {
+        markAsRead({ ...mail, isRead: false })
         navigate('/mail')
     }
 
