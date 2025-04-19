@@ -13,14 +13,14 @@ export function MailDetails() {
 
     const user = mailsService.getUser().email
     const navigate = useNavigate()
-    const { onMoveMailToTrash, markAsRead, markAsStarred } = useOutletContext() || {}
+    const { onMoveMailToTrash, markAsRead, markAsStarred, filterBy, sortBy } = useOutletContext() || {}
     
     useEffect(() => {
         loadMail()
     },[mailId])
 
     function loadMail() {
-        mailsService.get(mailId)
+        mailsService.get(mailId, filterBy, sortBy)
             .then (mail => {
                 setMail(mail)
             })
@@ -59,13 +59,13 @@ export function MailDetails() {
             }
           }
         
-          const { id, subject, from, to, sentAt, body } = mail
+          const { subject, from, to, sentAt, body } = mail
 
           if (!mail.id) return <div>Loading mail...</div> //add loader
           
     return (
         <section className='mail-details mail-list-details-container'>
-            <MailHeader key={mail.id} mail={mail} onBack={onBack} 
+            <MailHeader key={mail.id} mail={mail} onBack={onBack} filterBy={filterBy} sortBy={sortBy}
             onMoveMailToTrash={onMoveMailToTrash} markAsRead={markAsRead}/>
             
             <section className="mail-content grid">
@@ -103,7 +103,7 @@ export function MailDetails() {
                             <button><img src={'/assets/img/mail/more.svg'} alt="Inbox icon" /></button>
                         </div>
                     </div>
-                    <textarea className="body" name="body" id="body" defaultValue={body}></textarea>
+                    <textarea className="body" name="body" id="body" value={body || ''} readOnly></textarea>
                     <div className="send-options">
                         <button><img src={'/assets/img/mail/reply.svg'} alt="Inbox icon" /> Reply</button>
                         <button><img src={'/assets/img/mail/reply.svg'} alt="Inbox icon" 

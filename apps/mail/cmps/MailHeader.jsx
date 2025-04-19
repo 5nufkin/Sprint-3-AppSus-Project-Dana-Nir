@@ -3,7 +3,7 @@ import { mailsService } from '../services/mail.service.js'
 const { useState, useEffect } = React
 const { Link, useNavigate } = ReactRouterDOM
 
-export function MailHeader({ mail, onBack, onMoveMailToTrash, markAsRead }) {
+export function MailHeader({ mail, onBack, onMoveMailToTrash, markAsRead, filterBy, sortBy }) {
 
     const [mailIdx, setMailIdx] = useState()
     const [mailsCount, setMailsCount] = useState()
@@ -13,28 +13,20 @@ export function MailHeader({ mail, onBack, onMoveMailToTrash, markAsRead }) {
         getIndexAndLength()
     }, [])
 
-    // async function onRemove() {
-    //     await onMoveMailToTrash({ ...mail, removedAt: Date.now() })
-    //     navigate('/mail')
-    // }
     function onRemove() {
         onMoveMailToTrash({ ...mail, removedAt: Date.now() })
         navigate('/mail')
     }
-    
-    // async function onUnread() {
-    //     await markAsRead({ ...mail, isRead: false })
-    //     navigate('/mail')
-    // }
+
     function onUnread() {
         markAsRead({ ...mail, isRead: false })
         navigate('/mail')
     }
 
     function getIndexAndLength() {
-        mailsService.getMailIdx(mail.id)
+        mailsService.getMailIdx(mail.id, filterBy, sortBy)
             .then (mailIdx => setMailIdx(mailIdx + 1))
-        mailsService.getMailsCount()
+        mailsService.getMailsCount(filterBy, sortBy)
             .then (mailsCount => setMailsCount(mailsCount))
     }
 
