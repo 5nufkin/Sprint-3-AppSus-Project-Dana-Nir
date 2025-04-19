@@ -1,31 +1,31 @@
-import { AddCollaboratorIcon, AddImageIcon, TrashIcon, MoreOptionsIcon, PaletteIcon, ReminderBellIcon } from "./Icons.jsx"
+import { AddCollaboratorIcon, TrashIcon, MoreOptionsIcon, PaletteIcon, ReminderBellIcon, ImageIcon } from "./Icons.jsx"
 
 
-export function NoteButtons({ onTrashNote }) {
+export function NoteButtons({ onTrashNote, className = '' }) {
   return (
-    <section className="note-actions-container">
+    <section className={`note-actions-container ${className}`} >
 
-      <button className="note-btn flex align-center justify-center" title="Background options">
+      <button className="note-icon-btn" title="Background options">
         <PaletteIcon />
       </button>
 
-      <button className="note-btn flex align-center justify-center" title="Remind me">
+      <button className="note-icon-btn" title="Remind me">
         <ReminderBellIcon />
       </button>
 
-      <button className="note-btn flex align-center justify-center" title="Collaborator">
+      <button className="note-icon-btn" title="Collaborator">
         <AddCollaboratorIcon />
       </button>
 
-      <button className="note-btn flex align-center justify-center" title="Add image">
-        <AddImageIcon />
+      <button className="note-icon-btn" title="Add image">
+        <ImageIcon />
       </button>
 
-      <button onClick={onTrashNote} className="note-btn flex align-center justify-center" title="Trash note">
+      <button onClick={onTrashNote} className="note-icon-btn" title="Trash note">
         <TrashIcon />
       </button>
 
-      <button className="note-btn flex align-center justify-center" title="More">
+      <button className="note-icon-btn" title="More">
         <MoreOptionsIcon />
       </button>
 

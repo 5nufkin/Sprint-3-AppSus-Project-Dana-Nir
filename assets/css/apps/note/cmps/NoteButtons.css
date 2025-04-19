@@ -3,7 +3,11 @@
   gap: .5rem;
 }
 
-.note-btn {
+.note-icon-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 2rem;
   height: 2rem;
 
@@ -13,7 +17,38 @@
   color: var(--clr-btn-base);
 }
 
-.note-btn:hover {
+.note-icon-btn:hover {
   color: var(--clr-btn-hover);
   background-color: var(--clr-btn-hover-bg);
+}
+
+.note-pin {
+  position: absolute;
+  top: .375rem;
+  right: .75rem;
+
+  width: 34px;
+  height: 34px;
+  padding: 0;
+}
+
+.note-close-btn {
+  font-family: 'google-sans-medium';
+  margin-inline-end: .375rem;
+  color: rgba(0, 0, 0, 0.87);
+  line-height: 1.25rem;
+  font-size: .875rem;
+  letter-spacing: .0178571429em;
+  height: 36px;
+  padding: .5rem 1.5rem;
+  border-radius: 4px;
+  width: auto;
+}
+
+.note-close-btn:hover {
+  background-color: rgba(95, 99, 104, 0.039);
+}
+
+.add-action-btns {
+  gap: 1.125rem;
 }

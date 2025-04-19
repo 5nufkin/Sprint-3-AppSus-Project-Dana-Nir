@@ -8,6 +8,7 @@ const { useState, useEffect } = React
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
   const [newNote, setNewNote] = useState(noteService.getEmptyNote())
+  const [isAddExpanded, setIsAddExpanded] = useState(false)
 
   useEffect(() => {
     loadNotes()
@@ -32,6 +33,7 @@ export function NoteIndex() {
 
   function addNote(ev) {
     ev.preventDefault()
+    setIsAddExpanded(false)
     const noteToSave = { ...newNote, createdAt: Date.now() }
     noteService.save(noteToSave)
       .then(note => {
@@ -64,7 +66,10 @@ export function NoteIndex() {
       <AddNote
         newNote={newNote}
         handleChange={handleChange}
-        addNote={addNote} />
+        addNote={addNote}
+        isAddExpanded={isAddExpanded}
+        setIsAddExpanded={setIsAddExpanded}
+      />
 
       <NoteList
         notes={notes}

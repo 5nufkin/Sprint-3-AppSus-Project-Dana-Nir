@@ -3,14 +3,70 @@
   margin: auto;
   margin-block: 2rem;
   min-height: 46px;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  border: 1px solid var(--clr-input-border);
+  border-radius: .5rem;
+  overflow: hidden;
 }
 
-.add-note-input {
+.add-note-container form {
   position: relative;
+}
+
+.add-note-container input {
+  box-sizing: border-box;
+
+  position: relative;
+  width: 100%;
+  border: none;
+
   color: var(--clr-txt-base);
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+}
+
+.add-note-container .input-content {
+  font-family: 'roboto-regular';
   padding: .75rem 1rem;
-  border-radius: .5rem;
-  border: 1px solid #dadce0;
-  line-height: 1.5;
+  letter-spacing: .0142857143em;
+  font-size: .875rem;
+  line-height: 1.25rem;
+}
+
+.add-note-container .input-title {
+  font-family: 'google-sans-medium';
+  padding: .625rem 0.9375rem;
+  letter-spacing: .00625em;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.input-content::placeholder {
+  color: var(--clr-txt-placeholder);
+  font-family: 'google-sans-medium';
+  letter-spacing: 0.00625rem;
+  line-height: 1.5rem;
+  font-size: 1rem;
+}
+
+.input-content.expanded::placeholder {
+  font-size: .875rem;
+}
+
+.add-note-input-btns {
+  display: flex;
+  gap: 6px;
+  position: absolute;
+  right: .75rem;
+  top: 0;
+  min-height: 50px;
+}
+
+.add-note-input-btns button {
+  width: 48px;
+  height: 48px;
+  color: var(--clr-input-icons);
+}
+
+.action-buttons{
+  margin-block: .375rem;
+  padding-inline: .625rem;
 }

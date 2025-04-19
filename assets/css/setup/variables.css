@@ -10,4 +10,9 @@
   --clr-btn-base: #3C4043;
   --clr-btn-hover: #202124;
   --clr-btn-hover-bg: #5f636828;
+
+  /* INPUTS */
+  --clr-txt-placeholder: #000000b3;
+  --clr-input-icons: #747474;
+  --clr-input-border: #dadce0;
 }

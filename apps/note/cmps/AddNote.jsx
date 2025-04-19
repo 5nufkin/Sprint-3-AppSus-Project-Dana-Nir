@@ -1,13 +1,37 @@
+import { DynamicCmp } from "./DynamicCmp.jsx";
 
+const { useEffect, useRef } = React
 
-export function AddNote({ newNote, handleChange, addNote }) {
+export function AddNote({ newNote, handleChange, addNote, isAddExpanded, setIsAddExpanded }) {
+  const addNoteRef = useRef()
+  const contentInputRef = useRef()
+
+  useEffect(() => {
+    function handleClickOutside(ev) {
+      if (addNoteRef.current && !addNoteRef.current.contains(ev.target)) {
+        setIsAddExpanded(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   return (
-    <section className="add-note-container">
-    <form>
-      <input className="add-note-input" type="text" name="txt" value={newNote.info.txt} onChange={handleChange} placeholder="Take a note..." />
-      <button onClick={addNote}>Add note</button>
-    </form>
-    </section>
+    <DynamicCmp
+      {...{
+        newNote,
+        handleChange,
+        addNote,
+        isAddExpanded,
+        setIsAddExpanded,
+        addNoteRef,
+        contentInputRef
+      }}
+    />
   )
 }
+
