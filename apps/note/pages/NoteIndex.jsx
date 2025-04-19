@@ -45,6 +45,18 @@ export function NoteIndex() {
       })
   }
 
+  function onTrashNote(noteId) {
+    noteService.remove(noteId)
+      .then(() => {
+        setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
+        showSuccessMsg('Note trashed')
+      })
+      .catch(err => {
+        console.log('err', err)
+        showErrorMsg('Error! Could not trash note.')
+      })
+  }
+
   if (!notes) return <div>Loading notes...</div>
 
   return (
@@ -54,7 +66,10 @@ export function NoteIndex() {
         handleChange={handleChange}
         addNote={addNote} />
 
-      <NoteList notes={notes} />
+      <NoteList
+        notes={notes}
+        onTrashNote={onTrashNote}
+      />
     </section>
   )
 }
