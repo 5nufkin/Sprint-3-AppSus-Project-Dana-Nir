@@ -19,6 +19,23 @@ var demoNotes = [
   },
   {
     id: utilService.makeId(),
+    createdAt: 1678560000000,
+    type: 'NoteTodos',
+    isPinned: false,
+    style: {
+      backgroundColor: '#e0f2fe'
+    },
+    info: {
+      title: 'Weekend Chores',
+      todos: [
+        { txt: 'Laundry', doneAt: null },
+        { txt: 'Vacuum living room', doneAt: null },
+        { txt: 'Clean out fridge', doneAt: Date.now() - 86400000 }
+      ]
+    }
+  },
+  {
+    id: utilService.makeId(),
     createdAt: 1670985600000,
     type: 'NoteTxt',
     isPinned: false,
@@ -28,6 +45,23 @@ var demoNotes = [
     info: {
       title: '',
       txt: 'Wi-Fi password at mom’s: sunshine2022!'
+    }
+  },
+  {
+    id: utilService.makeId(),
+    createdAt: 1659235200000,
+    type: 'NoteTodos',
+    isPinned: false,
+    style: {
+      backgroundColor: '#fce7f3'
+    },
+    info: {
+      title: 'Work Tasks',
+      todos: [
+        { txt: 'Finish quarterly report', doneAt: Date.now() - 172800000 },
+        { txt: 'Email client feedback', doneAt: null },
+        { txt: 'Prepare Monday presentation', doneAt: null }
+      ]
     }
   },
   {
@@ -54,6 +88,23 @@ var demoNotes = [
     info: {
       title: '',
       txt: 'Reminder: renew passport before February'
+    }
+  },
+  {
+    id: utilService.makeId(),
+    createdAt: 1662067200000,
+    type: 'NoteTodos',
+    isPinned: false,
+    style: {
+      backgroundColor: '#dcfce7'
+    },
+    info: {
+      title: 'Goals for the Month',
+      todos: [
+        { txt: 'Read 2 books', doneAt: null },
+        { txt: 'Run 20km', doneAt: null },
+        { txt: 'Meditate daily', doneAt: Date.now() - 604800000 }
+      ]
     }
   },
   {

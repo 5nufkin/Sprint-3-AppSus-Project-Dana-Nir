@@ -1,6 +1,8 @@
 
 
-export function NoteTxt({ info }) {
+export function NoteTxt({ note }) {
+  const { info } = note
+  
   return (
     <React.Fragment>
       <h2>{info.title}</h2>

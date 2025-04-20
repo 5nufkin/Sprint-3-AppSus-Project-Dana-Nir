@@ -1,7 +1,7 @@
 
 
-export function NoteImg({ info }) {
-  const { url, title, txt } = info
+export function NoteImg({ note }) {
+  const { url, title, txt } = note.info
 
   return (<React.Fragment>
     <img src={url} alt="" />

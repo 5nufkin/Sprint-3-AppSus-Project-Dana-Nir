@@ -60,6 +60,10 @@ export function NoteIndex() {
       })
   }
 
+  function onToggleTodo(noteId) {
+    console.log('NOTEID', noteId)
+  }
+
   if (!notes) return <div>Loading notes...</div>
 
   return (
@@ -77,6 +81,7 @@ export function NoteIndex() {
       <NoteList
         notes={notes}
         onTrashNote={onTrashNote}
+        onToggleTodo={onToggleTodo}
       />
     </section>
   )

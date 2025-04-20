@@ -1,4 +1,4 @@
-import { CheckBoxIcon, DrawIcon, ImageIcon } from "./Icons.jsx";
+import { CheckBoxIcon, DrawIcon, ImageIcon } from "../Icons.jsx";
 
 
 export function AddNoteCollapsed({ addNoteRef, isAddExpanded, newNote, handleChange, setIsAddExpanded }) {

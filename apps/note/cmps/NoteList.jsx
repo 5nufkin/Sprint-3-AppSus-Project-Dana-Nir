@@ -1,7 +1,7 @@
 import { NotePreview } from "./NotePreview.jsx"
 
 
-export function NoteList({ notes, onTrashNote }) {
+export function NoteList({ notes, onTrashNote, onToggleTodo }) {
 
   return (
     <section className="notes-container">
@@ -12,7 +12,7 @@ export function NoteList({ notes, onTrashNote }) {
               key={note.id}
               note={note}
               onTrashNote={onTrashNote}
-
+              onToggleTodo={onToggleTodo}
             />
           )
         })

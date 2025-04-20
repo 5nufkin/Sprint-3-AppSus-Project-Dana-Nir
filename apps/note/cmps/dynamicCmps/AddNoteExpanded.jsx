@@ -1,5 +1,5 @@
-import { PinIcon } from "./Icons.jsx";
-import { NoteButtons } from "./NoteButtons.jsx";
+import { PinIcon } from "../Icons.jsx";
+import { NoteButtons } from "../NoteButtons.jsx";
 
 const { useEffect } = React
 
