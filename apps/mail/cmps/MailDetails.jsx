@@ -1,6 +1,7 @@
 import { mailsService } from '../services/mail.service.js'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 import { MailHeader } from './MailHeader.jsx'
+import { Loader } from '../../../cmps/Loader.jsx'
 
 const { useState, useEffect } = React
 const { useParams, useOutletContext, useNavigate } = ReactRouterDOM
@@ -61,7 +62,7 @@ export function MailDetails() {
         
           const { subject, from, to, sentAt, body } = mail
 
-          if (!mail.id) return <div>Loading mail...</div> //add loader
+          // if (!mail.id) return <Loader />
           
     return (
         <section className='mail-details mail-list-details-container'>
