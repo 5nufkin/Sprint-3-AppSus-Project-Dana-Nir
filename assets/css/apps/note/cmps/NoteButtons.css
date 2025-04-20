@@ -56,3 +56,7 @@
 .add-action-btns {
   gap: 1.125rem;
 }
+
+.btn-color-palette-container{
+  position: relative;
+}
