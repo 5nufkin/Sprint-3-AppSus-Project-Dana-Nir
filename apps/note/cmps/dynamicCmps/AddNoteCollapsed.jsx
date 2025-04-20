@@ -10,14 +10,14 @@ export function AddNoteCollapsed({ addNoteRef, isAddExpanded, newNote, handleCha
 
         <section className="add-note-input-btns">
           <button type="button" className="note-icon-btn" title="New list">
-            <CheckBoxIcon/>
+            <CheckBoxIcon />
           </button>
 
           <button type="button" className="note-icon-btn" title="New note with drawing">
             <DrawIcon />
           </button>
 
-          <button type="button" className="note-icon-btn" title="New note with Image">
+          <button onClick={() => setIsAddExpanded(true)} type="button" className="note-icon-btn" title="New note with Image">
             <ImageIcon />
           </button>
         </section>

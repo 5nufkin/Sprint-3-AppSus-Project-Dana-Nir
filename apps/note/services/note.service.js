@@ -203,10 +203,17 @@ function _createNotes() {
   }
 }
 
-function getEmptyNote() {
+function getEmptyNote(type = 'NoteTxt') {
+  const info = {
+    title: '',
+    txt: ''
+  }
+
+  if (type === 'NoteImg') info.url = ''
+
   return {
     createdAt: null,
-    type: 'NoteTxt',
+    type,
     isPinned: false,
     style: {
       backgroundColor: ''

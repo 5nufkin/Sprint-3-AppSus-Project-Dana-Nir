@@ -12,6 +12,8 @@ export function AddNoteExpanded({ addNoteRef, isAddExpanded, newNote, handleChan
     }
   }, [])
 
+  
+
   return (
     <section className="add-note-container" ref={addNoteRef}>
 
@@ -19,7 +21,7 @@ export function AddNoteExpanded({ addNoteRef, isAddExpanded, newNote, handleChan
 
         <input className="input-title" type="text" name="title" value={newNote.info.title} onChange={handleChange} placeholder="Title" ></input>
 
-        <input ref={contentInputRef} onFocus={() => setIsAddExpanded(true)} className={`input-content  ${isAddExpanded ? 'expanded' : ''}`} type="text" name="txt" value={newNote.info.txt} onChange={handleChange} placeholder="Take a note..." />
+        <input ref={contentInputRef} className={`input-content  ${isAddExpanded ? 'expanded' : ''}`} type="text" name="txt" value={newNote.info.txt} onChange={handleChange} placeholder="Take a note..." />
 
         <button className="note-icon-btn note-pin" title="Pin note">
           <PinIcon />
