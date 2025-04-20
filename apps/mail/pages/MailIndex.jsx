@@ -1,6 +1,8 @@
 import { mailsService } from '../services/mail.service.js'
 import { ComposeMail } from '../cmps/ComposeMail.jsx'
 import { MailNav } from '../cmps/MailNav.jsx'
+import { MailTxtFilter } from '../cmps/MailTxtFilter.jsx'
+// import { MailOtherFilterAndSort } from '../cmps/MailOtherFilterAndSort.jsx'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 const { useState, useEffect } = React
@@ -13,6 +15,7 @@ export function MailIndex() {
     const [isComposeOpen, setIsComposeOpen] = useState(false)
     const [filterBy, setFilterBy] = useState(mailsService.getDefaultFilter())
     const [sortBy, setSortBy] = useState(mailsService.getDefaultSortBy())
+    const [draftToCompose, setDraftToCompose] = useState('')
 
     const { mailId } = useParams()
     const navigate = useNavigate()
@@ -20,7 +23,11 @@ export function MailIndex() {
 
     useEffect(() => {
         loadMails()
-    }, [location.pathname, mails])
+    }, [location.pathname, filterBy, sortBy])
+
+    // useEffect(() => {
+    //     loadMails()
+    // }, [location.pathname, mails])
 
     function loadMails() {
         mailsService.query(filterBy, sortBy)
@@ -33,8 +40,18 @@ export function MailIndex() {
             })
     }
 
-    function onToggleCompose() {
-        setIsComposeOpen(!isComposeOpen);
+    function onToggleCompose(state = false, mailId = '') {
+        if (mailId){
+            mailsService.get(mailId)
+                .then(mail => {
+                    setDraftToCompose(mail)
+                    setTimeout(() => {
+                        setIsComposeOpen(true)
+                    }, 1000);
+                })
+        } 
+        else if (!isComposeOpen) setIsComposeOpen(true)
+        else setIsComposeOpen(state)
     }
 
     function onMoveMailToTrash(mailToMove) {
@@ -48,6 +65,20 @@ export function MailIndex() {
                 console.log('Cannot move mail to trash!:', err)
                 showErrorMsg('Cannot move mail to trash!')
             })
+    }
+
+    function onRemoveMail(mailId) {
+        // setIsLoading(true)
+        mailsService.remove(mailId)
+            .then(() => {
+                setMails((prevMails) => prevMails.filter(mail => mail.id !== mailId))
+                showSuccessMsg(`Email deleted successfully!`)
+            })
+            .catch(err => {
+                console.log('Problem deleting email:', err)
+                showErrorMsg('Problem deleting email!')
+            })
+            // .finally(() => setIsLoading(false))
     }
 
     function markAsRead(mailToRead) {
@@ -71,22 +102,29 @@ export function MailIndex() {
         setFilterBy(prevFilterBy => ({...prevFilterBy, ...filterByToEdit}))
     }
 
+    function onSetSortBy(sortByToEdit) {
+        setSortBy(prevSortBy => ({...sortByToEdit}))
+    }
+
     if (!mails) return <div>No emails to show</div>
 
 
     return (
         <div className='mail-app grid'>
-            <MailNav onToggleCompose={onToggleCompose} onSetFilterBy={onSetFilterBy}
-            mails={mails} filterBy={filterBy} />
+            <MailNav onToggleCompose={onToggleCompose} onSetFilterBy={onSetFilterBy} onSetSortBy={onSetSortBy}
+            mails={mails} filterBy={filterBy} sortBy={sortBy}/>
+            <MailTxtFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy}/>
             <div>
+            {/* <MailOtherFilterAndSort onSetFilterBy={onSetFilterBy} onSetSortBy={onSetSortBy}
+            filterBy={filterBy} sortBy={sortBy}/> */}
             <Outlet context={{
                 onMoveMailToTrash,
                 markAsRead,
-                ...(mailId ? {markAsStarred, filterBy, sortBy} : { mails })
+                ...(mailId ? {markAsStarred, filterBy, sortBy} : { mails, onRemoveMail, onToggleCompose })
             }} />
             </div>
 
-            {isComposeOpen && <ComposeMail />}
+            {isComposeOpen && <ComposeMail onToggleCompose={onToggleCompose} draftToCompose={draftToCompose}/>}
         </div>
     )
 }

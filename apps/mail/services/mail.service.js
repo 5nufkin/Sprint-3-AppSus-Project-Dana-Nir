@@ -120,7 +120,7 @@ function getDefaultFilter() {
   return { 
     status: 'inbox', 
     txt: '', 
-    isRead: '',
+    isRead: false,
     lables: []
     }
 }
