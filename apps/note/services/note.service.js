@@ -34,7 +34,7 @@ const demoNotes = [
     style: { backgroundColor: "#f6e2dd" },
     info: {
       title: "Yad Eliyahu Arena",
-      url: "https://images.unsplash.com/photo-1580741315300-c99c5278ee07"
+      url: "/assets/img/note/img/HP_ArenaFull.jpg"
     }
   },
   {
@@ -45,7 +45,7 @@ const demoNotes = [
     style: { backgroundColor: "#d4e4ed" },
     info: {
       title: "Celtics Fans",
-      url: "https://images.unsplash.com/photo-1558807012-d2e3c4e86ef4"
+      url: "/assets/img/note/img/Celtics-Fans.webp"
     }
   },
   {
@@ -165,7 +165,7 @@ const demoNotes = [
     style: { backgroundColor: "#fef3c7" },
     info: {
       title: "Quiet morning",
-      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+      url: "/assets/img/note/img/morning view.jfif"
     }
   },
   {
@@ -176,7 +176,7 @@ const demoNotes = [
     style: { backgroundColor: "#f39f76" },
     info: {
       title: "Coffee corner",
-      url: "https://images.unsplash.com/photo-1509042239860-f550ce710b93"
+      url: "/assets/img/note/img/coffee.jfif"
     }
   },
   {
@@ -187,7 +187,7 @@ const demoNotes = [
     style: { backgroundColor: "#ede9fe" },
     info: {
       title: "Peaceful hike",
-      url: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d"
+      url: "/assets/img/note/img/hike.jfif"
     }
   },
   {
