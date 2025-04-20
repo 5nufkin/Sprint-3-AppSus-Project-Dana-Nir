@@ -14,11 +14,49 @@ export const mailsService = {
     remove,
     getMailIdx,
     getMailsCount,
-    // getDefaultFilter,
+    getDefaultFilter,
+    getDefaultSortBy,
 }
 
-function query() {
+function query(filterBy = {}, sortBy = {}) {
   return storageService.query(MAIL_KEY)
+    .then(mails => {
+      switch (filterBy.status) {
+        case 'inbox':
+            mails = mails.filter(mail => mail.to === getUser().email && !mail.removedAt)
+            break
+        case 'sent':
+            mails = mails.filter(mail => mail.from === getUser().email && !mail.removedAt)
+            break
+        case 'starred':
+            mails = mails.filter(mail => mail.isStarred === true && !mail.removedAt)
+            break
+          case 'trash':
+            mails = mails.filter(mail => mail.removedAt)
+            break
+        case 'draft':
+            mails = mails.filter(mail => !mail.sentAt)
+            break
+      }
+      if (filterBy.txt) {
+        const regex = new RegExp(filterBy.txt, 'i')
+        mails = mails.filter(mail => regex.test(mail.subject) || regex.test(mail.body))
+        // || regex.test(mail.from) || regex.test(mail.to)
+      }
+
+      if (filterBy.isRead) {
+        mails = mails.filter(mail => !mail.isRead)
+      }
+
+      if (sortBy.sentAt) {
+        mails.sort((p1, p2) => (p1.sentAt - p2.sentAt) * sortBy.sentAt)
+      } else if (sortBy.createdAt) {
+        mails.sort((p1, p2) => (p1.createdAt - p2.createdAt) * sortBy.createdAt)
+      }
+
+    return mails
+
+    })
 }
 
 function getUser() {
@@ -36,8 +74,8 @@ function getUnreadCount() {
       return mails.filter(mail => !mail.isRead).length})
 }
 
-function getMailsCount() {
-  return storageService.query(MAIL_KEY)
+function getMailsCount(filterBy, sortBy) {
+  return query(filterBy, sortBy)
     .then (mails => {
       return mails.length})
 }
@@ -63,18 +101,34 @@ function save(mail) {
   }
 }
 
-function get(mailId) {
-  return storageService.get(MAIL_KEY, mailId).then(_setNextPrevMailId)
+function get(mailId, filterBy, sortBy) {
+  return storageService.get(MAIL_KEY, mailId)
+    .then(mail => _setNextPrevMailId(mail, filterBy, sortBy))
 }
 
 function remove(mailId) {
   return storageService.remove(MAIL_KEY, mailId)
 }
 
-function getMailIdx(mailId) {
-  return storageService.query(MAIL_KEY)
+function getMailIdx(mailId, filterBy, sortBy) {
+  return query(filterBy, sortBy)
     .then (mails => {
       return mails.findIndex(mail => mail.id === mailId)})
+}
+
+function getDefaultFilter() {
+  return { 
+    status: 'inbox', 
+    txt: '', 
+    isRead: '',
+    lables: []
+    }
+}
+
+function getDefaultSortBy() {
+  return {
+    sentAt: -1,
+  }
 }
 
 // ~~~~~~~~~~~~~~~~LOCAL FUNCTIONS~~~~~~~~~~~~~~~~~~~
@@ -93,6 +147,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1700400077000,
         removedAt: null,
+        isStarred: false,
         from: "feedback@example.com",
         to: "user@appsus.com"
       },
@@ -104,6 +159,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1700800020000,
         removedAt: null,
+        isStarred: false,
         from: "calendar@example.com",
         to: "user@appsus.com"
       },
@@ -115,6 +171,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1701200123000,
         removedAt: null,
+        isStarred: false,
         from: "lottery@example.com",
         to: "user@appsus.com"
       },
@@ -126,6 +183,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1701600066000,
         removedAt: null,
+        isStarred: false,
         from: "billing@example.com",
         to: "user@appsus.com"
       },
@@ -137,6 +195,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1702000200000,
         removedAt: null,
+        isStarred: false,
         from: "reports@example.com",
         to: "user@appsus.com"
       },
@@ -148,6 +207,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1703200203000,
         removedAt: null,
+        isStarred: false,
         from: "partner@example.com",
         to: "user@appsus.com"
       },
@@ -159,6 +219,7 @@ function _createMails() {
         isRead: true,
         sentAt: 1704000101000,
         removedAt: null,
+        isStarred: false,
         from: "events@example.com",
         to: "user@appsus.com"
       },
@@ -170,6 +231,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1704300154000,
         removedAt: null,
+        isStarred: false,
         from: "orders@example.com",
         to: "user@appsus.com"
       },
@@ -181,6 +243,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1704600056000,
         removedAt: null,
+        isStarred: false,
         from: "deals@example.com",
         to: "user@appsus.com"
       },
@@ -192,6 +255,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1704900155000,
         removedAt: null,
+        isStarred: false,
         from: "momo@momo.com",
         to: "user@appsus.com"
       },
@@ -203,6 +267,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1705100033000,
         removedAt: null,
+        isStarred: false,
         from: "travel@example.com",
         to: "user@appsus.com"
       },
@@ -214,6 +279,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1706000211000,
         removedAt: null,
+        isStarred: false,
         from: "sales@example.com",
         to: "user@appsus.com"
       },
@@ -225,6 +291,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1707000123000,
         removedAt: null,
+        isStarred: false,
         from: "dave@example.com",
         to: "user@appsus.com"
       },
@@ -236,6 +303,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1707782486000,
         removedAt: null,
+        isStarred: false,
         from: "carol@example.com",
         to: "user@appsus.com"
       },
@@ -247,6 +315,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1708387335000,
         removedAt: null,
+        isStarred: false,
         from: "bob@example.com",
         to: "user@appsus.com"
       },
@@ -258,6 +327,7 @@ function _createMails() {
         isRead: true,
         sentAt: 1736054400000,
         removedAt: null,
+        isStarred: false,
         from: "alice@example.com",
         to: "user@appsus.com"
       },
@@ -269,6 +339,7 @@ function _createMails() {
         isRead: true,
         sentAt: 1741977600000,
         removedAt: null,
+        isStarred: false,
         from: "support@example.com",
         to: "user@appsus.com"
       },
@@ -280,6 +351,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1744608000000,
         removedAt: null,
+        isStarred: false,
         from: "security@example.com",
         to: "user@appsus.com"
       },
@@ -291,6 +363,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1748736000000,
         removedAt: null,
+        isStarred: false,
         from: "features@example.com",
         to: "user@appsus.com"
       },
@@ -302,6 +375,7 @@ function _createMails() {
         isRead: false,
         sentAt: 1755888000000,
         removedAt: null,
+        isStarred: false,
         from: "greetings@example.com",
         to: "user@appsus.com"
       }
@@ -310,8 +384,8 @@ function _createMails() {
     utilService.saveToStorage(MAIL_KEY, mails)
 }
 
-function _setNextPrevMailId(mail) {
-  return query().then((mails) => {
+function _setNextPrevMailId(mail, filterBy, sortBy) {
+  return query(filterBy, sortBy).then((mails) => {
       const mailIdx = mails.findIndex((currMail) => currMail.id === mail.id)
       const prevMail = mails[mailIdx + 1] ? mails[mailIdx + 1] : mails[0]
       const nextMail = mails[mailIdx - 1] ? mails[mailIdx - 1] : mails[mails.length - 1]

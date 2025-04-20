@@ -2,7 +2,7 @@ const { useState } = React
 const { useNavigate } = ReactRouterDOM
 
 
-export function MailPreview({ mail, markAsRead }) {
+export function MailPreview({ mail, markAsRead, onMoveMailToTrash }) {
     const { from, subject, body, sentAt, createdAt, isRead } = mail
 
     const [isMailRead, setIsMailRead] = useState(isRead)
@@ -15,6 +15,19 @@ export function MailPreview({ mail, markAsRead }) {
     function onShowMail() {
         markAsRead({ ...mail, isRead: true })
         navigate(`/mail/${mail.id}`)
+    }
+
+    function toggleIsDeleted(ev) {
+        ev.preventDefault()
+        ev.stopPropagation()
+        onMoveMailToTrash({ ...mail, removedAt: Date.now() })
+    }
+
+    function toggleIsRead(ev) {
+        ev.preventDefault()
+        ev.stopPropagation()
+        markAsRead({ ...mail, isRead: !isMailRead })
+        setIsMailRead(!isMailRead)
     }
 
     const formattedDate = date.getFullYear() === currentYear
@@ -33,7 +46,18 @@ export function MailPreview({ mail, markAsRead }) {
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                 }}>{body}</td>
-                <td className={unread}>{formattedDate}</td>
+                
+                <td className={unread}>
+                    <span className="date">{formattedDate}</span>
+                    <span className="actions">
+                        <button onClick ={toggleIsDeleted}>
+                            <img src={`/assets/img/mail/trash.svg`} alt="Trash icon" />
+                        </button>
+                        <button onClick ={toggleIsRead}>
+                            {isMailRead ? <img src={'/assets/img/mail/read.svg'} alt="Inbox icon" /> : <img src={'/assets/img/mail/unread.svg'} alt="Inbox icon" />}
+                        </button>
+                    </span>
+                </td>
             </tr>
     )
 

@@ -9,3 +9,10 @@
 .mail-app nav {
    padding: 10px;
 }
+
+.mail-list-details-container{
+   border-radius: 15px;
+   padding: 10px;
+   background-color: white;
+   /* width: 100%; */
+}

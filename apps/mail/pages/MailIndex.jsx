@@ -11,6 +11,8 @@ export function MailIndex() {
     const [mails, setMails] = useState([])
     const location = useLocation()
     const [isComposeOpen, setIsComposeOpen] = useState(false)
+    const [filterBy, setFilterBy] = useState(mailsService.getDefaultFilter())
+    const [sortBy, setSortBy] = useState(mailsService.getDefaultSortBy())
 
     const { mailId } = useParams()
     const navigate = useNavigate()
@@ -21,7 +23,7 @@ export function MailIndex() {
     }, [location.pathname, mails])
 
     function loadMails() {
-        mailsService.query()
+        mailsService.query(filterBy, sortBy)
             .then (mails => {
                 setMails([...mails])
             })
@@ -31,24 +33,9 @@ export function MailIndex() {
             })
     }
 
-    if (!mails) return <div>No emails to show</div>
-
     function onToggleCompose() {
         setIsComposeOpen(!isComposeOpen);
     }
-
-    // function onMoveMailToTrash(mailToMove) {
-    //     // setIsLoading(true)
-    //     return mailsService.save(mailToMove)
-    //         .then(() => mailsService.query())
-    //         .then(mails => {
-    //             setMails([...mails])
-    //             showSuccessMsg('Moved email to trash')
-    //         })
-    //         .catch(err => {
-    //             console.log('Cannot move mail to trash!:', err)
-    //             showErrorMsg('Cannot move mail to trash!')
-    //         })
 
     function onMoveMailToTrash(mailToMove) {
         // setIsLoading(true)
@@ -63,17 +50,6 @@ export function MailIndex() {
             })
     }
 
-    // function markAsRead(mailToRead) {
-    //     return mailsService.save(mailToRead)
-    //         .then(() => mailsService.query())
-    //         .then(mails => {
-    //             setMails([...mails])
-    //         })
-    //         .catch(err => {
-    //             console.log('Failed to mark as read:', err)
-    //         })
-    // }
-
     function markAsRead(mailToRead) {
         mailsService.save(mailToRead)
             .then(setMails(mails => [...mails.map(mail => mail.id === mailToRead.id ? mailToRead : mail)]))
@@ -82,15 +58,31 @@ export function MailIndex() {
             })
     }
 
+    function markAsStarred(mailToStar) {
+        mailToStar.isStarred = !mailToStar.isStarred
+        mailsService.save(mailToStar)
+            .then(setMails(mails => [...mails.map(mail => mail.id === mailToStar.id ? mailToStar : mail)]))
+            .catch(err => {
+                console.log('Failed to mark as read:', err)
+        })
+    }
+
+    function onSetFilterBy(filterByToEdit) {
+        setFilterBy(prevFilterBy => ({...prevFilterBy, ...filterByToEdit}))
+    }
+
+    if (!mails) return <div>No emails to show</div>
+
+
     return (
         <div className='mail-app grid'>
-            <MailNav onToggleCompose={onToggleCompose} mails={mails} />
-            {/* <MailList className="mail-list-container" mails={mails}/> */}
+            <MailNav onToggleCompose={onToggleCompose} onSetFilterBy={onSetFilterBy}
+            mails={mails} filterBy={filterBy} />
             <div>
             <Outlet context={{
                 onMoveMailToTrash,
                 markAsRead,
-                ...(mailId ? {loadMails} : { mails, className: 'mail-list-container' })
+                ...(mailId ? {markAsStarred, filterBy, sortBy} : { mails })
             }} />
             </div>
 
