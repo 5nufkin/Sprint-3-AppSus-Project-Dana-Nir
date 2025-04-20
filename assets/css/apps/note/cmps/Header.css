@@ -51,7 +51,7 @@
 }
 
 .header .note-search-bar::placeholder {
-  font-family: 'google-sans-regular';
+  font-family: 'google-sans-regular',sans-serif;
 }
 
 .header .note-search-bar .icon-magnifying-glass {
