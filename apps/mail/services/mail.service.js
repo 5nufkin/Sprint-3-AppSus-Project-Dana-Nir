@@ -18,18 +18,18 @@ export const mailsService = {
     getDefaultSortBy,
 }
 
-function query(filterBy = {}, sortBy = {}) {
+function query(filterBy = getDefaultFilter(), sortBy = getDefaultSortBy()) {
   return storageService.query(MAIL_KEY)
     .then(mails => {
       switch (filterBy.status) {
         case 'inbox':
-            mails = mails.filter(mail => mail.to === getUser().email && !mail.removedAt)
+            mails = mails.filter(mail => mail.to === getUser().email && !mail.removedAt && mail.sentAt)
             break
         case 'sent':
-            mails = mails.filter(mail => mail.from === getUser().email && !mail.removedAt)
+            mails = mails.filter(mail => mail.from === getUser().email && !mail.removedAt && mail.sentAt)
             break
         case 'starred':
-            mails = mails.filter(mail => mail.isStarred === true && !mail.removedAt)
+            mails = mails.filter(mail => mail.isStarred === true && !mail.removedAt && mail.sentAt)
             break
           case 'trash':
             mails = mails.filter(mail => mail.removedAt)
@@ -41,25 +41,22 @@ function query(filterBy = {}, sortBy = {}) {
       if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
         mails = mails.filter(mail => regex.test(mail.subject) || regex.test(mail.body))
-        // || regex.test(mail.from) || regex.test(mail.to)
       }
 
       if (filterBy.isRead) {
         mails = mails.filter(mail => !mail.isRead)
       }
+
       return mails
     })
       .then(mails => {
 
-      if (sortBy.sentAt) {
-        mails.sort((p1, p2) => (p1.sentAt - p2.sentAt) * sortBy.sentAt)
+      if (sortBy.type) {
+        mails.sort((p1, p2) => (p1[sortBy.type] - p2[sortBy.type]) * sortBy.sortDir)
       }
-      else if (sortBy.createdAt) {
-        mails.sort((p1, p2) => (p1.createdAt - p2.createdAt ) * sortBy.createdAt)
+      else {
+        mails.sort((p1, p2) => (p1.createdAt - p2.createdAt ) * sortBy.sortDir)
       }
-      // else if (sortBy.subject) {
-      //   mails.sort((p1, p2) => p1.subject.localeCompare(p2.subject) * sortBy.subject)
-      // }
 
       return mails
   
@@ -76,8 +73,8 @@ function getUser() {
     return loggedinUser
 }
 
-function getUnreadCount(filterBy) {
-  return query(filterBy)
+function getUnreadCount() {
+  return query(getDefaultFilter())
     .then (mails => {
       return mails.filter(mail => !mail.isRead).length})
 }
@@ -135,7 +132,8 @@ function getDefaultFilter() {
 
 function getDefaultSortBy() {
   return {
-    sentAt: -1,
+    type: 'sentAt',
+    sortDir: -1
   }
 }
 

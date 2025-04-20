@@ -3,8 +3,8 @@ import { mailsService } from '../services/mail.service.js'
 const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouterDOM
 
-export function MailNav({ onToggleCompose, onSetFilterBy, onSetSortBy, mails, filterBy, sortBy }) {
-
+export function MailNav({ onToggleCompose, onSetFilterBy, onSetSortBy, mails, filterBy, sortBy, menuOpen }) {
+    console.log(menuOpen)
     const [unreadCount, setUnreadCount] = useState()
     const pageFlags = markCurrPage(filterBy)
     const { mailId } = useParams()
@@ -16,7 +16,7 @@ export function MailNav({ onToggleCompose, onSetFilterBy, onSetSortBy, mails, fi
     }, [mails])
 
     function getUnreadCount() {
-        mailsService.getUnreadCount(filterBy)
+        mailsService.getUnreadCount()
             .then (count => setUnreadCount(count))
     }
 
@@ -69,8 +69,8 @@ export function MailNav({ onToggleCompose, onSetFilterBy, onSetSortBy, mails, fi
 
     function onChangePage(page) {
         onSetFilterBy({ ...filterBy, status: page })
-        if(page === 'draft') onSetSortBy({ createdAt : -1  })
-            else onSetSortBy({ sentAt : -1  })
+        if(page === 'draft') onSetSortBy({ ...sortBy, type: 'createdAt' })
+            else onSetSortBy({ ...sortBy, type: 'sentAt' })
         setTimeout(() => {
             if (mailId) {
                 navigate('/mail')
@@ -78,9 +78,8 @@ export function MailNav({ onToggleCompose, onSetFilterBy, onSetSortBy, mails, fi
         }, 700);
     }
 
-
     return (
-        <nav className="mail-nav">
+        <nav className={`mail-nav ${menuOpen}`}>
             <button className="compose-btn flex align-items" onClick={onToggleCompose}><img src="assets/img/mail/compose.svg"/>
                 Compose</button>
             <div className="mail-boxes">

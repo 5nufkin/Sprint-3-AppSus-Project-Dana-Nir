@@ -2,6 +2,10 @@
     font-family: 'Product Sans bold', sans-serif;
 }
 
+.not-bold {
+    font-family: 'Product Sans regular', sans-serif;
+}
+
 .read {
     background-color: #f2f6fc;
 }

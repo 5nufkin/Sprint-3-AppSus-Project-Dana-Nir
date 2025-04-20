@@ -36,9 +36,10 @@ export function MailOtherFilterAndSort({ onSetFilterBy, onSetSortBy, filterBy, s
     function handleSortChange({ target }) {
         const field = target.name
         setIsChecked(target.checked)
-        const value = isChecked ? 1 : -1
+        const value = target.checked ? 1 : -1
+        console.log(field, value)
 
-        setSortByToEdit({ [field]: value })
+        setSortByToEdit({ type: field, sortDir: value })
         setDateActive(target.checked ? 'active' : '')
     }
     
@@ -65,7 +66,7 @@ export function MailOtherFilterAndSort({ onSetFilterBy, onSetSortBy, filterBy, s
 
                 <label>
                     <div className={`other-filter-btn ${dateActive}`}>
-                    <input type="checkbox" name={status === 'draft' ? 'createdAt' : 'sentAt'}
+                    <input type="checkbox" name={status === 'draft' ? '' : 'sentAt'}
                     onChange={handleSortChange}/>
                     <span className="custom-checkmark"></span> <img src={`assets/img/mail/${isChecked ? 'desc' : 'asc'}.svg`}/> Date
                     </div>

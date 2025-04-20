@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-export function MailTxtFilter({ onSetFilterBy, filterBy }) {
+export function MailTxtFilter({ onSetFilterBy, filterBy, onToggleMenu }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
 
@@ -9,7 +9,7 @@ export function MailTxtFilter({ onSetFilterBy, filterBy }) {
     }, [filterByToEdit])
 
     function onSubmitFilter(ev) {
-        ev.preventDefualt()
+        // ev.preventDefualt()
         onSetFilterBy(filterByToEdit)
     }
 
@@ -37,22 +37,13 @@ export function MailTxtFilter({ onSetFilterBy, filterBy }) {
             <form onSubmit={onSubmitFilter}>
                 <label htmlFor="txt">
                     <div className="search-bar flex align-center">
+                        <button className="btn-toggle-menu" onClick={onToggleMenu}>
+                        <img style={{ height: '20px', width: '20px' }} src="assets/img/mail/menu.svg"/>
+                        </button>
                 <button><img src={'assets/img/mail/search.svg'} /></button>
                 <input onChange={handleFilterChange} value={txt} name="txt" id="txt" type="text" placeholder="Search Mail" />
                     </div>
                 </label>
-
-                {/* <label htmlFor="categories">Categories:</label>
-                    <select 
-                        id="categories"
-                        onChange={handleChange}
-                        name="categories"
-                    >
-                        <option value="">Select an option</option>
-                        {categories.map(category => {
-                            return <option key={category} value={category}>{category}</option>
-                        })}
-                    </select> */}
 
             </form>
         </section>
