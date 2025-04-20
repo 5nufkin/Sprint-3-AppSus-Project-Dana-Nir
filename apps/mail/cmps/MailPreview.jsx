@@ -2,7 +2,7 @@ const { useState } = React
 const { useNavigate } = ReactRouterDOM
 
 
-export function MailPreview({ mail, markAsRead, onMoveMailToTrash }) {
+export function MailPreview({ mail, markAsRead, onMoveMailToTrash, onRemoveMail, onToggleCompose }) {
     const { from, subject, body, sentAt, createdAt, isRead } = mail
 
     const [isMailRead, setIsMailRead] = useState(isRead)
@@ -13,14 +13,18 @@ export function MailPreview({ mail, markAsRead, onMoveMailToTrash }) {
     const currentYear = new Date().getFullYear()
 
     function onShowMail() {
+        if(!mail.sentAt) onToggleCompose(false, mail.id)
+            else {
         markAsRead({ ...mail, isRead: true })
         navigate(`/mail/${mail.id}`)
+        }
     }
 
     function toggleIsDeleted(ev) {
         ev.preventDefault()
         ev.stopPropagation()
-        onMoveMailToTrash({ ...mail, removedAt: Date.now() })
+        if (mail.removedAt || !mail.sentAt) onRemoveMail(mail.id)
+            else onMoveMailToTrash({ ...mail, removedAt: Date.now() })
     }
 
     function toggleIsRead(ev) {
@@ -51,10 +55,12 @@ export function MailPreview({ mail, markAsRead, onMoveMailToTrash }) {
                     <span className="date">{formattedDate}</span>
                     <span className="actions">
                         <button onClick ={toggleIsDeleted}>
-                            <img src={`/assets/img/mail/trash.svg`} alt="Trash icon" />
+                            {mail.removedAt ? <img src={`assets/img/mail/trash_selected.svg`} alt="Trash icon" />
+                                : <img src={`assets/img/mail/trash.svg`} alt="Trash icon" />}
+                            
                         </button>
                         <button onClick ={toggleIsRead}>
-                            {isMailRead ? <img src={'/assets/img/mail/read.svg'} alt="Inbox icon" /> : <img src={'/assets/img/mail/unread.svg'} alt="Inbox icon" />}
+                            {isMailRead ? <img src={'assets/img/mail/read.svg'} alt="Inbox icon" /> : <img src={'/assets/img/mail/unread.svg'} alt="Inbox icon" />}
                         </button>
                     </span>
                 </td>

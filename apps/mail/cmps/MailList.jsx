@@ -6,7 +6,7 @@ const { useOutletContext } = ReactRouterDOM
 export function MailList() {
     
     const context = useOutletContext()
-    const { mails, markAsRead, onMoveMailToTrash } = context || {}
+    const { mails, markAsRead, onMoveMailToTrash, onRemoveMail, onToggleCompose } = context || {}
 
     if (!mails) return <div>Loading mails...</div> //add loader
 
@@ -16,7 +16,8 @@ export function MailList() {
                 <tbody>
                     {mails.map(mail => (
                         <MailPreview key={mail.id} mail={mail} 
-                        markAsRead={markAsRead} onMoveMailToTrash={onMoveMailToTrash} />
+                        markAsRead={markAsRead} onMoveMailToTrash={onMoveMailToTrash}
+                        onRemoveMail={onRemoveMail} onToggleCompose={onToggleCompose} />
                     ))}
                 </tbody>
             </table>
