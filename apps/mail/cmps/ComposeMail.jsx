@@ -90,7 +90,7 @@ export function ComposeMail({ onToggleCompose, draftToCompose }) {
             <section className={`mail-header flex space-between ${isOpen ? '' : 'close-width' }`} onClick={toggleIsOpen}>
                 <div>{mailHeader}</div>
                 <div>
-                <button onClick={toggleIsOpen}>-</button>
+                <button style={{ fontSize: '20px' }} onClick={toggleIsOpen}>-</button>
                 <button onClick={onSaveMail}><img src={'assets/img/mail/close.svg'} alt="close icon" 
                 style={{ width: '16px', height: '16px'}} /></button>
                 </div>
