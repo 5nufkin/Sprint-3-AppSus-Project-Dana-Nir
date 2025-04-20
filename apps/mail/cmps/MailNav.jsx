@@ -15,6 +15,10 @@ export function MailNav({ onToggleCompose, onSetFilterBy, onSetSortBy, mails, fi
         markCurrPage()
     }, [mails])
 
+    useEffect(() => {
+        
+    },[unreadCount])
+
     function getUnreadCount() {
         mailsService.getUnreadCount()
             .then (count => setUnreadCount(count))

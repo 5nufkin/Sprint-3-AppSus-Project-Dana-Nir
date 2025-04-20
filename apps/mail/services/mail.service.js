@@ -154,7 +154,7 @@ function _createMails() {
         "sentAt": null,
         "removedAt": null,
         "isStarred": false,
-        "from": "support@example.com",
+        "from": "support@gmail.com",
         "to": "user@appsus.com"
       },
       {
@@ -167,7 +167,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": false,
         "from": "user@appsus.com",
-        "to": "friend@example.com"
+        "to": "friend@gmail.com"
       },
       {
         "id": "573b1613",
@@ -179,7 +179,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "info@example.com"
+        "to": "info@gmail.com"
       },
       {
         "id": "26cbcdf1",
@@ -191,7 +191,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "info@example.com"
+        "to": "info@yahoo.com"
       },
       {
         "id": "77aafd9b",
@@ -203,7 +203,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": false,
         "from": "user@appsus.com",
-        "to": "friend@example.com"
+        "to": "friend@yahoo.com"
       },
       {
         "id": "89a5354a",
@@ -215,7 +215,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": false,
         "from": "user@appsus.com",
-        "to": "contact@example.com"
+        "to": "contact@yahoo.com"
       },
       {
         "id": "c7cf06dd",
@@ -226,7 +226,7 @@ function _createMails() {
         "sentAt": null,
         "removedAt": 1702391519422,
         "isStarred": false,
-        "from": "team@example.com",
+        "from": "team@outlook.com",
         "to": "user@appsus.com"
       },
       {
@@ -239,7 +239,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "contact@example.com"
+        "to": "contact@outlook.com"
       },
       {
         "id": "332c7733",
@@ -250,7 +250,7 @@ function _createMails() {
         "sentAt": 1707707393877,
         "removedAt": null,
         "isStarred": true,
-        "from": "team@example.com",
+        "from": "team@gmail.com",
         "to": "user@appsus.com"
       },
       {
@@ -263,7 +263,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "friend@example.com"
+        "to": "friend@gmail.com"
       },
       {
         "id": "041c0564",
@@ -274,7 +274,7 @@ function _createMails() {
         "sentAt": null,
         "removedAt": null,
         "isStarred": false,
-        "from": "team@example.com",
+        "from": "team@gmail.com",
         "to": "user@appsus.com"
       },
       {
@@ -287,7 +287,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "contact@example.com"
+        "to": "contact@gmail.com"
       },
       {
         "id": "750ba745",
@@ -299,7 +299,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": false,
         "from": "user@appsus.com",
-        "to": "contact@example.com"
+        "to": "contact@gmail.com"
       },
       {
         "id": "6c0c24c8",
@@ -311,7 +311,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "contact@example.com"
+        "to": "contact@gmail.com"
       },
       {
         "id": "87bd6aff",
@@ -323,7 +323,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": false,
         "from": "user@appsus.com",
-        "to": "contact@example.com"
+        "to": "contact@gmail.com"
       },
       {
         "id": "867c19d3",
@@ -335,7 +335,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "contact@example.com"
+        "to": "contact@gmail.com"
       },
       {
         "id": "c1e7c116",
@@ -347,7 +347,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "info@example.com"
+        "to": "info@gmail.com"
       },
       {
         "id": "ee77c2eb",
@@ -359,7 +359,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "info@example.com"
+        "to": "info@outlook.com"
       },
       {
         "id": "ec1b6ef8",
@@ -370,7 +370,7 @@ function _createMails() {
         "sentAt": 1732850290781,
         "removedAt": null,
         "isStarred": false,
-        "from": "noreply@example.com",
+        "from": "noreply@outlook.com",
         "to": "user@appsus.com"
       },
       {
@@ -382,7 +382,7 @@ function _createMails() {
         "sentAt": 1735771979606,
         "removedAt": 1735772080332,
         "isStarred": true,
-        "from": "support@example.com",
+        "from": "support@outlook.com",
         "to": "user@appsus.com"
       },
       {
@@ -395,7 +395,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "friend@example.com"
+        "to": "friend@hotmail.com"
       },
       {
         "id": "08349aaa",
@@ -406,7 +406,7 @@ function _createMails() {
         "sentAt": 1741961200213,
         "removedAt": null,
         "isStarred": true,
-        "from": "noreply@example.com",
+        "from": "noreply@hotmail.com",
         "to": "user@appsus.com"
       },
       {
@@ -419,7 +419,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "contact@example.com"
+        "to": "contact@hotmail.com"
       },
       {
         "id": "ab67fe70",
@@ -431,7 +431,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": true,
         "from": "user@appsus.com",
-        "to": "friend@example.com"
+        "to": "friend@hotmail.com"
       },
       {
         "id": "ae57790d",
@@ -442,7 +442,7 @@ function _createMails() {
         "sentAt": 1743461478374,
         "removedAt": null,
         "isStarred": true,
-        "from": "noreply@example.com",
+        "from": "noreply@gmail.com",
         "to": "user@appsus.com"
       },
       {
@@ -455,7 +455,7 @@ function _createMails() {
         "removedAt": null,
         "isStarred": false,
         "from": "user@appsus.com",
-        "to": "friend@example.com"
+        "to": "friend@gmail.com"
       },
       {
         "id": "b7ffea6d",
@@ -466,7 +466,7 @@ function _createMails() {
         "sentAt": 1744899315573,
         "removedAt": null,
         "isStarred": true,
-        "from": "support@example.com",
+        "from": "support@gmail.com",
         "to": "user@appsus.com"
       },
       {
@@ -478,7 +478,7 @@ function _createMails() {
         "sentAt": 1744932707908,
         "removedAt": null,
         "isStarred": false,
-        "from": "support@example.com",
+        "from": "support@gmail.com",
         "to": "user@appsus.com"
       },
       {
@@ -490,7 +490,7 @@ function _createMails() {
         "sentAt": null,
         "removedAt": null,
         "isStarred": false,
-        "from": "noreply@example.com",
+        "from": "noreply@gmail.com",
         "to": "user@appsus.com"
       },
       {
@@ -502,7 +502,7 @@ function _createMails() {
         "sentAt": null,
         "removedAt": null,
         "isStarred": false,
-        "from": "team@example.com",
+        "from": "team@icq.com",
         "to": "user@appsus.com"
       }     
     )      
