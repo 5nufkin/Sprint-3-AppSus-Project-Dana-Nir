@@ -36,8 +36,10 @@ export function MailTxtFilter({ onSetFilterBy, filterBy }) {
         <section className="text-filter">
             <form onSubmit={onSubmitFilter}>
                 <label htmlFor="txt">
+                    <div className="search-bar flex align-center">
                 <button><img src={'assets/img/mail/search.svg'} /></button>
                 <input onChange={handleFilterChange} value={txt} name="txt" id="txt" type="text" placeholder="Search Mail" />
+                    </div>
                 </label>
 
                 {/* <label htmlFor="categories">Categories:</label>

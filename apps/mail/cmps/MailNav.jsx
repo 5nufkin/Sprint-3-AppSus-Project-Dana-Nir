@@ -3,7 +3,7 @@ import { mailsService } from '../services/mail.service.js'
 const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouterDOM
 
-export function MailNav({ onToggleCompose, onSetFilterBy, onSetSortBy, mails, filterBy }) {
+export function MailNav({ onToggleCompose, onSetFilterBy, onSetSortBy, mails, filterBy, sortBy }) {
 
     const [unreadCount, setUnreadCount] = useState()
     const pageFlags = markCurrPage(filterBy)
@@ -16,7 +16,7 @@ export function MailNav({ onToggleCompose, onSetFilterBy, onSetSortBy, mails, fi
     }, [mails])
 
     function getUnreadCount() {
-        mailsService.getUnreadCount()
+        mailsService.getUnreadCount(filterBy)
             .then (count => setUnreadCount(count))
     }
 

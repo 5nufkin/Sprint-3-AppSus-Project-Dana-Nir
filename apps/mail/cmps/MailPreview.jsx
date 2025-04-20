@@ -27,7 +27,7 @@ export function MailPreview({ mail, markAsRead, onMoveMailToTrash, onRemoveMail,
             else onMoveMailToTrash({ ...mail, removedAt: Date.now() })
     }
 
-    function toggleIsRead(ev) {
+    function toggleIsRead(ev) { 
         ev.preventDefault()
         ev.stopPropagation()
         markAsRead({ ...mail, isRead: !isMailRead })

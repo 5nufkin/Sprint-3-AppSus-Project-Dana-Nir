@@ -2,7 +2,7 @@ import { mailsService } from '../services/mail.service.js'
 import { ComposeMail } from '../cmps/ComposeMail.jsx'
 import { MailNav } from '../cmps/MailNav.jsx'
 import { MailTxtFilter } from '../cmps/MailTxtFilter.jsx'
-// import { MailOtherFilterAndSort } from '../cmps/MailOtherFilterAndSort.jsx'
+import { MailOtherFilterAndSort } from '../cmps/MailOtherFilterAndSort.jsx'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 const { useState, useEffect } = React
@@ -23,11 +23,15 @@ export function MailIndex() {
 
     useEffect(() => {
         loadMails()
-    }, [location.pathname, filterBy, sortBy])
+    }, [location.pathname, isComposeOpen])
 
-    // useEffect(() => {
-    //     loadMails()
-    // }, [location.pathname, mails])
+    useEffect(() => {
+        loadMails()
+    }, [filterBy])
+    
+    useEffect(() => {
+        loadMails()
+    }, [sortBy])
 
     function loadMails() {
         mailsService.query(filterBy, sortBy)
@@ -103,7 +107,7 @@ export function MailIndex() {
     }
 
     function onSetSortBy(sortByToEdit) {
-        setSortBy(prevSortBy => ({...sortByToEdit}))
+        setSortBy({...sortByToEdit})
     }
 
     if (!mails) return <div>No emails to show</div>
@@ -114,9 +118,11 @@ export function MailIndex() {
             <MailNav onToggleCompose={onToggleCompose} onSetFilterBy={onSetFilterBy} onSetSortBy={onSetSortBy}
             mails={mails} filterBy={filterBy} sortBy={sortBy}/>
             <MailTxtFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy}/>
-            <div>
-            {/* <MailOtherFilterAndSort onSetFilterBy={onSetFilterBy} onSetSortBy={onSetSortBy}
-            filterBy={filterBy} sortBy={sortBy}/> */}
+            <div className="details-list-wrapper">
+                <div className="filter-container">
+                <MailOtherFilterAndSort onSetFilterBy={onSetFilterBy} onSetSortBy={onSetSortBy}
+                filterBy={filterBy} sortBy={sortBy}/>
+                </div>
             <Outlet context={{
                 onMoveMailToTrash,
                 markAsRead,

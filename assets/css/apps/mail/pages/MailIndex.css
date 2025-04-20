@@ -3,16 +3,31 @@
    background-color: #f8fafd;
    grid-auto-flow: column;
    grid-template-columns: auto 1fr;
+   grid-template-rows: auto 1fr;
+   grid-template-areas:
+    "nav filter"
+    "nav details-list";
    width: 100dvw;
+   height: calc(100dvh - 60px - 1.5rem);
+   overflow: hidden;
 }
 
-.mail-app nav {
-   padding: 10px;
+.mail-nav {
+   padding-inline: 10px;
+   grid-area: nav;
 }
 
-.mail-list-details-container{
+.details-list-wrapper {
+   /* overflow-y: auto; */
+   height: 100%;
+   min-height: 0;
+   grid-area: details-list;
    border-radius: 15px;
-   padding: 10px;
+   /* padding: 10px; */
    background-color: white;
-   /* width: 100%; */
+   position: relative;
+}
+
+.filter-container {
+   grid-area: filter;
 }

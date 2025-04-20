@@ -56,9 +56,12 @@ export function ComposeMail({ onToggleCompose, draftToCompose }) {
         setIsOpen(false)
         
         mailsService.save(mail)
-            .then(() => {
+            .then((mail) => {
                 if (!shouldMinimize){
                     onToggleCompose(false)
+                    setMail(mailsService.getEmptyMail())
+                } else {
+                    setMail({...mail})
                 }
                 showSuccessMsg('Email saved to drafts!')
             })

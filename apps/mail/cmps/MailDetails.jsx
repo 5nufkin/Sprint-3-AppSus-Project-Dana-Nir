@@ -73,7 +73,6 @@ export function MailDetails() {
                 <div className="mail-subject flex space-between align-center">
                     <div className="flex align-center" style={{ gap: '10px' }}>
                         <h1>{subject}</h1>
-                        <p className="folder-tag">update with filter by!!!</p> {/* this needs to be updated with filter */}
                     </div>
                     <div className="flex">
                     <button><img src={'assets/img/mail/print.svg'} alt="Inbox icon" /></button>

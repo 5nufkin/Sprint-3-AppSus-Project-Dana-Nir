@@ -47,16 +47,24 @@ function query(filterBy = {}, sortBy = {}) {
       if (filterBy.isRead) {
         mails = mails.filter(mail => !mail.isRead)
       }
+      return mails
+    })
+      .then(mails => {
 
       if (sortBy.sentAt) {
         mails.sort((p1, p2) => (p1.sentAt - p2.sentAt) * sortBy.sentAt)
-      } else if (sortBy.createdAt) {
-        mails.sort((p1, p2) => (p1.createdAt - p2.createdAt) * sortBy.createdAt)
       }
+      else if (sortBy.createdAt) {
+        mails.sort((p1, p2) => (p1.createdAt - p2.createdAt ) * sortBy.createdAt)
+      }
+      // else if (sortBy.subject) {
+      //   mails.sort((p1, p2) => p1.subject.localeCompare(p2.subject) * sortBy.subject)
+      // }
 
-    return mails
+      return mails
+  
+      })
 
-    })
 }
 
 function getUser() {
@@ -68,8 +76,8 @@ function getUser() {
     return loggedinUser
 }
 
-function getUnreadCount() {
-  return storageService.query(MAIL_KEY)
+function getUnreadCount(filterBy) {
+  return query(filterBy)
     .then (mails => {
       return mails.filter(mail => !mail.isRead).length})
 }
@@ -140,245 +148,365 @@ function _createMails() {
 
     mails.push(
       {
-        id: utilService.makeId(),
-        createdAt: 1700400000000,
-        subject: "Feedback Request",
-        body: "We'd love to hear from you!",
-        isRead: false,
-        sentAt: 1700400077000,
-        removedAt: null,
-        isStarred: false,
-        from: "feedback@example.com",
-        to: "user@appsus.com"
+        "id": "c30383f8",
+        "createdAt": 1684315298199,
+        "subject": "Holiday Plans",
+        "body": "Don't miss out on this deal!",
+        "isRead": true,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "support@example.com",
+        "to": "user@appsus.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1700800000000,
-        subject: "Reminder",
-        body: "Don't forget your appointment.",
-        isRead: false,
-        sentAt: 1700800020000,
-        removedAt: null,
-        isStarred: false,
-        from: "calendar@example.com",
-        to: "user@appsus.com"
+        "id": "16004cb9",
+        "createdAt": 1684713043198,
+        "subject": "Family Reunion",
+        "body": "Here's the latest update.",
+        "isRead": false,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "user@appsus.com",
+        "to": "friend@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1701200000000,
-        subject: "Congrats!",
-        body: "You've won a prize!",
-        isRead: false,
-        sentAt: 1701200123000,
-        removedAt: null,
-        isStarred: false,
-        from: "lottery@example.com",
-        to: "user@appsus.com"
+        "id": "573b1613",
+        "createdAt": 1685171840198,
+        "subject": "Meeting Reminder",
+        "body": "Don't miss out on this deal!",
+        "isRead": false,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "info@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1701600000000,
-        subject: "Subscription Expiring",
-        body: "Renew your subscription to continue.",
-        isRead: false,
-        sentAt: 1701600066000,
-        removedAt: null,
-        isStarred: false,
-        from: "billing@example.com",
-        to: "user@appsus.com"
+        "id": "26cbcdf1",
+        "createdAt": 1686867356198,
+        "subject": "Sale Alert",
+        "body": "Our office will be closed.",
+        "isRead": true,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "info@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1702000000000,
-        subject: "Monthly Report",
-        body: "Your report is now available.",
-        isRead: false,
-        sentAt: 1702000200000,
-        removedAt: null,
-        isStarred: false,
-        from: "reports@example.com",
-        to: "user@appsus.com"
+        "id": "77aafd9b",
+        "createdAt": 1690022983198,
+        "subject": "Invoice #12345",
+        "body": "Suspicious login attempt detected.",
+        "isRead": true,
+        "sentAt": 1690023228577,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "user@appsus.com",
+        "to": "friend@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1703200000000,
-        subject: "Collaboration Opportunity",
-        body: "Would you like to collaborate?",
-        isRead: false,
-        sentAt: 1703200203000,
-        removedAt: null,
-        isStarred: false,
-        from: "partner@example.com",
-        to: "user@appsus.com"
+        "id": "89a5354a",
+        "createdAt": 1702299457199,
+        "subject": "Family Reunion",
+        "body": "Your appointment is confirmed.",
+        "isRead": true,
+        "sentAt": 1702299570923,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "user@appsus.com",
+        "to": "contact@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1704000000000,
-        subject: "Upcoming Event",
-        body: "Join us for an exciting event.",
-        isRead: true,
-        sentAt: 1704000101000,
-        removedAt: null,
-        isStarred: false,
-        from: "events@example.com",
-        to: "user@appsus.com"
+        "id": "c7cf06dd",
+        "createdAt": 1702391335199,
+        "subject": "Family Reunion",
+        "body": "Please confirm your availability.",
+        "isRead": false,
+        "sentAt": null,
+        "removedAt": 1702391519422,
+        "isStarred": false,
+        "from": "team@example.com",
+        "to": "user@appsus.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1704300000000,
-        subject: "Your Order",
-        body: "Thanks for your purchase!",
-        isRead: false,
-        sentAt: 1704300154000,
-        removedAt: null,
-        isStarred: false,
-        from: "orders@example.com",
-        to: "user@appsus.com"
+        "id": "5138d385",
+        "createdAt": 1704659437198,
+        "subject": "Weekly Newsletter",
+        "body": "Thank you for your payment.",
+        "isRead": true,
+        "sentAt": 1704659572388,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "contact@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1704600000000,
-        subject: "Sale Ending Soon!",
-        body: "Don’t miss our biggest sale!",
-        isRead: false,
-        sentAt: 1704600056000,
-        removedAt: null,
-        isStarred: false,
-        from: "deals@example.com",
-        to: "user@appsus.com"
+        "id": "332c7733",
+        "createdAt": 1707707109199,
+        "subject": "Invoice #12345",
+        "body": "Your appointment is confirmed.",
+        "isRead": false,
+        "sentAt": 1707707393877,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "team@example.com",
+        "to": "user@appsus.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1704900000000,
-        subject: "Miss You!",
-        body: "Would love to catch up sometime.",
-        isRead: false,
-        sentAt: 1704900155000,
-        removedAt: null,
-        isStarred: false,
-        from: "momo@momo.com",
-        to: "user@appsus.com"
+        "id": "d6b82161",
+        "createdAt": 1710989637199,
+        "subject": "Security Alert",
+        "body": "Suspicious login attempt detected.",
+        "isRead": true,
+        "sentAt": 1710989787368,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "friend@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1705100000000,
-        subject: "Flight Confirmation",
-        body: "Your flight is confirmed.",
-        isRead: false,
-        sentAt: 1705100033000,
-        removedAt: null,
-        isStarred: false,
-        from: "travel@example.com",
-        to: "user@appsus.com"
+        "id": "041c0564",
+        "createdAt": 1718494988198,
+        "subject": "Meeting Reminder",
+        "body": "Don't miss out on this deal!",
+        "isRead": true,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "team@example.com",
+        "to": "user@appsus.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1706000000000,
-        subject: "Invoice Attached",
-        body: "Please find your invoice attached.",
-        isRead: false,
-        sentAt: 1706000211000,
-        removedAt: null,
-        isStarred: false,
-        from: "sales@example.com",
-        to: "user@appsus.com"
+        "id": "4c481892",
+        "createdAt": 1720061140199,
+        "subject": "Invoice #12345",
+        "body": "Here's the latest update.",
+        "isRead": false,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "contact@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1707000000000,
-        subject: "Weekend Plans",
-        body: "Are we still on for hiking?",
-        isRead: false,
-        sentAt: 1707000123000,
-        removedAt: null,
-        isStarred: false,
-        from: "dave@example.com",
-        to: "user@appsus.com"
+        "id": "750ba745",
+        "createdAt": 1722239957198,
+        "subject": "Urgent Notice",
+        "body": "Looking forward to seeing you.",
+        "isRead": false,
+        "sentAt": 1722240076268,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "user@appsus.com",
+        "to": "contact@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1707782400000,
-        subject: "Check This Out!",
-        body: "Here's what I found.",
-        isRead: false,
-        sentAt: 1707782486000,
-        removedAt: null,
-        isStarred: false,
-        from: "carol@example.com",
-        to: "user@appsus.com"
+        "id": "6c0c24c8",
+        "createdAt": 1723039266199,
+        "subject": "Sale Alert",
+        "body": "Here's the latest update.",
+        "isRead": false,
+        "sentAt": 1723039450979,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "contact@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1708387200000,
-        subject: "Dinner Plans",
-        body: "We should reschedule.",
-        isRead: false,
-        sentAt: 1708387335000,
-        removedAt: null,
-        isStarred: false,
-        from: "bob@example.com",
-        to: "user@appsus.com"
+        "id": "87bd6aff",
+        "createdAt": 1724372802197,
+        "subject": "Security Alert",
+        "body": "Don't miss out on this deal!",
+        "isRead": true,
+        "sentAt": 1724372918108,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "user@appsus.com",
+        "to": "contact@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1735881600000,
-        subject: "Meeting Tomorrow",
-        body: "Let me know what you think.",
-        isRead: true,
-        sentAt: 1736054400000,
-        removedAt: null,
-        isStarred: false,
-        from: "alice@example.com",
-        to: "user@appsus.com"
+        "id": "867c19d3",
+        "createdAt": 1724576303198,
+        "subject": "Weekly Newsletter",
+        "body": "Enjoy your weekend!",
+        "isRead": true,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "contact@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1741478400000,
-        subject: "Update Required",
-        body: "Your app needs an update.",
-        isRead: true,
-        sentAt: 1741977600000,
-        removedAt: null,
-        isStarred: false,
-        from: "support@example.com",
-        to: "user@appsus.com"
+        "id": "c1e7c116",
+        "createdAt": 1731417009198,
+        "subject": "Project Update",
+        "body": "Don't miss out on this deal!",
+        "isRead": false,
+        "sentAt": 1731417237826,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "info@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1744243200000,
-        subject: "Password Reset",
-        body: "Here is your reset link.",
-        isRead: false,
-        sentAt: 1744608000000,
-        removedAt: null,
-        isStarred: false,
-        from: "security@example.com",
-        to: "user@appsus.com"
+        "id": "ee77c2eb",
+        "createdAt": 1732493048199,
+        "subject": "Security Alert",
+        "body": "Don't miss out on this deal!",
+        "isRead": true,
+        "sentAt": 1732493160118,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "info@example.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1748553600000,
-        subject: "New Features Released!",
-        body: "Try the new features in your dashboard.",
-        isRead: false,
-        sentAt: 1748736000000,
-        removedAt: null,
-        isStarred: false,
-        from: "features@example.com",
-        to: "user@appsus.com"
+        "id": "ec1b6ef8",
+        "createdAt": 1732850052199,
+        "subject": "Weekly Newsletter",
+        "body": "Thank you for your payment.",
+        "isRead": true,
+        "sentAt": 1732850290781,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "noreply@example.com",
+        "to": "user@appsus.com"
       },
       {
-        id: utilService.makeId(),
-        createdAt: 1755628800000,
-        subject: "Happy Birthday!",
-        body: "Wishing you a wonderful day.",
-        isRead: false,
-        sentAt: 1755888000000,
-        removedAt: null,
-        isStarred: false,
-        from: "greetings@example.com",
-        to: "user@appsus.com"
-      }
+        "id": "0c6b0c1a",
+        "createdAt": 1735771784198,
+        "subject": "Meeting Reminder",
+        "body": "Here's the latest update.",
+        "isRead": false,
+        "sentAt": 1735771979606,
+        "removedAt": 1735772080332,
+        "isStarred": true,
+        "from": "support@example.com",
+        "to": "user@appsus.com"
+      },
+      {
+        "id": "7fe30594",
+        "createdAt": 1737733821199,
+        "subject": "Appointment Confirmation",
+        "body": "Thank you for your payment.",
+        "isRead": false,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "friend@example.com"
+      },
+      {
+        "id": "08349aaa",
+        "createdAt": 1741960972198,
+        "subject": "Security Alert",
+        "body": "Your appointment is confirmed.",
+        "isRead": true,
+        "sentAt": 1741961200213,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "noreply@example.com",
+        "to": "user@appsus.com"
+      },
+      {
+        "id": "225c4f27",
+        "createdAt": 1742232359199,
+        "subject": "Project Update",
+        "body": "Looking forward to seeing you.",
+        "isRead": true,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "contact@example.com"
+      },
+      {
+        "id": "ab67fe70",
+        "createdAt": 1742796540199,
+        "subject": "Holiday Plans",
+        "body": "Please confirm your availability.",
+        "isRead": false,
+        "sentAt": 1742796835973,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "user@appsus.com",
+        "to": "friend@example.com"
+      },
+      {
+        "id": "ae57790d",
+        "createdAt": 1743461346198,
+        "subject": "Project Update",
+        "body": "Looking forward to seeing you.",
+        "isRead": true,
+        "sentAt": 1743461478374,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "noreply@example.com",
+        "to": "user@appsus.com"
+      },
+      {
+        "id": "157bddc8",
+        "createdAt": 1744820566199,
+        "subject": "Sale Alert",
+        "body": "Here's the latest update.",
+        "isRead": true,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "user@appsus.com",
+        "to": "friend@example.com"
+      },
+      {
+        "id": "b7ffea6d",
+        "createdAt": 1744899149199,
+        "subject": "Project Update",
+        "body": "Enjoy your weekend!",
+        "isRead": true,
+        "sentAt": 1744899315573,
+        "removedAt": null,
+        "isStarred": true,
+        "from": "support@example.com",
+        "to": "user@appsus.com"
+      },
+      {
+        "id": "9e475adc",
+        "createdAt": 1744932557199,
+        "subject": "Urgent Notice",
+        "body": "Suspicious login attempt detected.",
+        "isRead": true,
+        "sentAt": 1744932707908,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "support@example.com",
+        "to": "user@appsus.com"
+      },
+      {
+        "id": "abe14ed3",
+        "createdAt": 1745056083199,
+        "subject": "Sale Alert",
+        "body": "Suspicious login attempt detected.",
+        "isRead": true,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "noreply@example.com",
+        "to": "user@appsus.com"
+      },
+      {
+        "id": "88af616d",
+        "createdAt": 1745130230199,
+        "subject": "Project Update",
+        "body": "Suspicious login attempt detected.",
+        "isRead": true,
+        "sentAt": null,
+        "removedAt": null,
+        "isStarred": false,
+        "from": "team@example.com",
+        "to": "user@appsus.com"
+      }     
     )      
       
     utilService.saveToStorage(MAIL_KEY, mails)

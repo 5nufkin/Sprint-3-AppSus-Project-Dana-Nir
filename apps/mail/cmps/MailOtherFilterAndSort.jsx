@@ -1,19 +1,18 @@
 const { useState, useEffect } = React
 
-export function MailTxtFilter(onSetFilterBy, onSetSortBy, filterBy, sortBy) {
+export function MailOtherFilterAndSort({ onSetFilterBy, onSetSortBy, filterBy, sortBy }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     const [sortByToEdit, setSortByToEdit] = useState({ ...sortBy })
+    const [isChecked, setIsChecked] = useState(false)
 
     useEffect(() => {
         onSetFilterBy(filterByToEdit)
+    }, [filterByToEdit])
+    
+    useEffect(() => {
         onSetSortBy(sortByToEdit)
-    }, [filterByToEdit, sortByToEdit])
-
-    // function onSubmitFilter(ev) {
-    //     ev.preventDefualt()
-    //     onSetFilterBy (filterByToEdit)
-    // }
+    }, [sortByToEdit])
 
     function handleFilterChange({ target }) {
         const field = target.name
@@ -33,17 +32,9 @@ export function MailTxtFilter(onSetFilterBy, onSetSortBy, filterBy, sortBy) {
 
     function handleSortChange({ target }) {
         const field = target.name
-        let value = target.value
-        switch (target.type) {
-            case 'number':
-            case 'range':
-                value = +value
-                break;
+        setIsChecked(target.checked)
+        const value = isChecked ? 1 : -1
 
-            case 'checkbox':
-                value = target.checked
-                break
-        }
         setSortByToEdit({ [field]: value })
     }
     
@@ -53,20 +44,27 @@ export function MailTxtFilter(onSetFilterBy, onSetSortBy, filterBy, sortBy) {
 
     return (
         <section className="other-filter">
-            <form>
+            <form className="flex">
                 <label>
+                    <div className="other-filter-btn">
                     <input type="checkbox" name="isRead"
-                    onChange={handleFilterChange}/>Unread
+                    onChange={handleFilterChange}/>
+                    <span className="custom-checkmark"></span> Unread
+                    </div>
                 </label>
 
-                <label>
+                {/* <label>
                     <input type="checkbox" name="subject"
-                    onChange={handleSortChange}/><img src="assets/img/mail/asc.svg"/> Subject
-                </label>
+                    onChange={handleSortChange}/> 
+                    <span className="custom-checkmark"></span> <img src="assets/img/mail/asc.svg"/> Subject
+                </label> */}
 
                 <label>
+                    <div className="other-filter-btn">
                     <input type="checkbox" name={status === 'draft' ? 'createdAt' : 'sentAt'}
-                    onChange={handleSortChange}/><img src="assets/img/mail/asc.svg"/> Date
+                    onChange={handleSortChange}/>
+                    <span className="custom-checkmark"></span> <img src={`assets/img/mail/${isChecked ? 'desc' : 'asc'}.svg`}/> Date
+                    </div>
                 </label>
 
             </form>
