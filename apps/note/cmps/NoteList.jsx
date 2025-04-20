@@ -1,7 +1,7 @@
 import { NotePreview } from "./NotePreview.jsx"
 
 
-export function NoteList({ notes, onTrashNote, onToggleTodo }) {
+export function NoteList({ notes, onTrashNote, onToggleTodo, handleColorSelect }) {
 
   return (
     <section className="notes-container">
@@ -13,6 +13,7 @@ export function NoteList({ notes, onTrashNote, onToggleTodo }) {
               note={note}
               onTrashNote={onTrashNote}
               onToggleTodo={onToggleTodo}
+              handleColorSelect={handleColorSelect}
             />
           )
         })

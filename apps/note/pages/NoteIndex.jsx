@@ -79,11 +79,30 @@ export function NoteIndex() {
       }
     })
 
-    setNotes(updatedNotes)
-
     const updatedNote = updatedNotes.find(note => note.id === noteId)
+
     noteService.save(updatedNote)
+      .then(() => setNotes(updatedNotes))
       .catch(err => console.log('err', err))
+  }
+
+  function setNoteType(type) {
+    setNewNote(noteService.getEmptyNote(type))
+    setIsAddExpanded(true)
+  }
+
+  function handleColorSelect(colorCode, noteId) {
+    const notesCopy = notes.slice()
+    const noteToUpdate = notesCopy.find(note => note.id === noteId)
+
+    noteToUpdate.style.backgroundColor = colorCode
+
+    noteService.save(noteToUpdate)
+      .then(() => setNotes(notesCopy))
+      .catch(err => {
+        console.log('err', err)
+        showErrorMsg('Error! Could not update note.')
+      })
   }
 
   if (!notes) return <div>Loading notes...</div>
@@ -98,12 +117,14 @@ export function NoteIndex() {
         addNote={addNote}
         isAddExpanded={isAddExpanded}
         setIsAddExpanded={setIsAddExpanded}
+        setNoteType={setNoteType}
       />
 
       <NoteList
         notes={notes}
         onTrashNote={onTrashNote}
         onToggleTodo={onToggleTodo}
+        handleColorSelect={handleColorSelect}
       />
     </section>
   )
