@@ -2,7 +2,7 @@ import { DynamicCmp } from "./DynamicCmp.jsx";
 
 const { useEffect, useRef } = React
 
-export function AddNote({ newNote, handleChange, addNote, isAddExpanded, setIsAddExpanded }) {
+export function AddNote({ newNote, handleChange, addNote, isAddExpanded, setIsAddExpanded, setNoteType }) {
   const addNoteRef = useRef()
   const contentInputRef = useRef()
 
@@ -29,7 +29,8 @@ export function AddNote({ newNote, handleChange, addNote, isAddExpanded, setIsAd
         isAddExpanded,
         setIsAddExpanded,
         addNoteRef,
-        contentInputRef
+        contentInputRef,
+        setNoteType,
       }}
     />
   )

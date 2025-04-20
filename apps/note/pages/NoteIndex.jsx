@@ -86,6 +86,11 @@ export function NoteIndex() {
       .catch(err => console.log('err', err))
   }
 
+  function setNoteType(type) {
+    setNewNote(noteService.getEmptyNote(type))
+    setIsAddExpanded(true)
+  }
+
   if (!notes) return <div>Loading notes...</div>
 
   return (
@@ -98,6 +103,7 @@ export function NoteIndex() {
         addNote={addNote}
         isAddExpanded={isAddExpanded}
         setIsAddExpanded={setIsAddExpanded}
+        setNoteType={setNoteType}
       />
 
       <NoteList

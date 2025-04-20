@@ -29,7 +29,8 @@
   color: var(--clr-txt-base);
 }
 
-.add-note-container .input-content {
+.add-note-container .input-content,
+.add-note-container .input-url {
   padding: .75rem 1rem;
 
 
