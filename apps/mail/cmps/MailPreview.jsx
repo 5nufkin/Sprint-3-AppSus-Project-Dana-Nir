@@ -60,7 +60,7 @@ export function MailPreview({ mail, markAsRead, onMoveMailToTrash, onRemoveMail,
                             
                         </button>
                         <button onClick ={toggleIsRead}>
-                            {isMailRead ? <img src={'assets/img/mail/read.svg'} alt="Inbox icon" /> : <img src={'/assets/img/mail/unread.svg'} alt="Inbox icon" />}
+                            {isMailRead ? <img src={'assets/img/mail/read.svg'} alt="Inbox icon" /> : <img src={'assets/img/mail/unread.svg'} alt="Inbox icon" />}
                         </button>
                     </span>
                 </td>
