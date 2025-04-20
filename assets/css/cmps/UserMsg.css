@@ -2,20 +2,22 @@
     background-color: lightgray;
     padding: 1em;
     position: absolute;
-    top: 1em;
-    right: 1em;
+    bottom: 1em;
+    left: 1em;
+    border-radius: 15px;
+    border: 1px solid black;
 }
 
 .user-msg.success {
-    background-color: lightgreen;
+    background-color: rgb(237, 237, 237);
 }
 
 .user-msg.error {
-    background-color: lightpink;
+    background-color: rgb(237, 237, 237);
 }
 
 
-.user-msg button{
+/* .user-msg button{
     float: right;
     margin: 1em;
-}
+} */

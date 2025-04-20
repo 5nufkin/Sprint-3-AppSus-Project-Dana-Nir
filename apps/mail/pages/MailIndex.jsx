@@ -27,11 +27,7 @@ export function MailIndex() {
 
     useEffect(() => {
         loadMails()
-    }, [filterBy])
-    
-    useEffect(() => {
-        loadMails()
-    }, [sortBy])
+    }, [filterBy, sortBy])
 
     function loadMails() {
         mailsService.query(filterBy, sortBy)

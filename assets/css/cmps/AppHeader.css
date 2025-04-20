@@ -1,16 +1,18 @@
 header {
     background-color: #f8fafd;
-    border-bottom: 2px solid white;
+    font-family: 'Product Sans Regular';
+    color: black;
 }
 
 .app-header {
     display: flex;
     justify-content: space-between;
     padding: 20px 0;
+    margin: 0;
 }
 
 nav a {
-    margin: .5em;
+    margin: .3em;
 }
 
 nav a:active {
@@ -18,7 +20,18 @@ nav a:active {
 }
 
 nav a.active {
-    color: darkblue;
+    /* color: darkblue;
     font-weight: bold;
-    text-decoration: overline;
+    text-decoration: overline; */
+    background: rgb(237, 237, 237);
+    border-radius: 999px;
+    padding: 2px 8px;
+    height: 1rem;
+}
+
+.app-header img {
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    padding-inline-start: 15px;
 }

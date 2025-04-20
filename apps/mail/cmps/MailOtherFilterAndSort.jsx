@@ -5,6 +5,8 @@ export function MailOtherFilterAndSort({ onSetFilterBy, onSetSortBy, filterBy, s
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     const [sortByToEdit, setSortByToEdit] = useState({ ...sortBy })
     const [isChecked, setIsChecked] = useState(false)
+    const [readActive , setReadActive] = useState('')
+    const [dateActive , setDateActive] = useState('')
 
     useEffect(() => {
         onSetFilterBy(filterByToEdit)
@@ -27,6 +29,7 @@ export function MailOtherFilterAndSort({ onSetFilterBy, onSetSortBy, filterBy, s
                 value = target.checked
                 break
         }
+        setReadActive(target.checked ? 'active' : '')
         setFilterByToEdit(prevFilterBy => ({...prevFilterBy, [field]: value}))
     }
 
@@ -36,6 +39,7 @@ export function MailOtherFilterAndSort({ onSetFilterBy, onSetSortBy, filterBy, s
         const value = isChecked ? 1 : -1
 
         setSortByToEdit({ [field]: value })
+        setDateActive(target.checked ? 'active' : '')
     }
     
     const { isRead, status } = filterByToEdit
@@ -46,7 +50,7 @@ export function MailOtherFilterAndSort({ onSetFilterBy, onSetSortBy, filterBy, s
         <section className="other-filter">
             <form className="flex">
                 <label>
-                    <div className="other-filter-btn">
+                    <div className={`other-filter-btn ${readActive}`}>
                     <input type="checkbox" name="isRead"
                     onChange={handleFilterChange}/>
                     <span className="custom-checkmark"></span> Unread
@@ -60,7 +64,7 @@ export function MailOtherFilterAndSort({ onSetFilterBy, onSetSortBy, filterBy, s
                 </label> */}
 
                 <label>
-                    <div className="other-filter-btn">
+                    <div className={`other-filter-btn ${dateActive}`}>
                     <input type="checkbox" name={status === 'draft' ? 'createdAt' : 'sentAt'}
                     onChange={handleSortChange}/>
                     <span className="custom-checkmark"></span> <img src={`assets/img/mail/${isChecked ? 'desc' : 'asc'}.svg`}/> Date
