@@ -27,3 +27,14 @@
 .color-picker-popover .btn-color-option:hover {
   box-shadow: 0 0 0 2px var(--clr-btn-hover);
 }
+
+.btn-color-option.btn-no-color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2px;
+
+  border: 1px solid #ccc;
+  background-color: var(--clr-white);
+}

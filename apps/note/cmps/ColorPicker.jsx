@@ -1,3 +1,4 @@
+import { NoColorIcon } from "./Icons.jsx"
 
 
 export function ColorPicker({ onSelectColor, note }) {
@@ -6,6 +7,14 @@ export function ColorPicker({ onSelectColor, note }) {
 
   return (
     <div className="color-picker-popover flex justify-center align-center">
+      <button
+        onClick={() => onSelectColor('transparent', note.id)}
+        className="btn-color-option btn-no-color"
+        title="Default"
+      >
+        <NoColorIcon />
+      </button>
+
       {colors.map((color, idx) => <button key={idx}
         onClick={() => onSelectColor(color, note.id)}
         className="btn-color-option"
