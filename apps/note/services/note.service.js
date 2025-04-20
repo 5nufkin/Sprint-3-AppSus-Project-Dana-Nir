@@ -23,7 +23,7 @@ const demoNotes = [
     style: { backgroundColor: '#d4e4ed' },
     info: {
       title: 'Sunset Surf Session 🌊',
-      url: '/assets/img/note/img/surfing.jpg'
+      url: 'assets/img/note/img/surfing.jpg'
     }
   },
   {
@@ -45,7 +45,7 @@ const demoNotes = [
     style: { backgroundColor: '' },
     info: {
       title: 'Celtics Fans',
-      url: '/assets/img/note/img/Celtics-Fans.webp'
+      url: 'assets/img/note/img/Celtics-Fans.webp'
     }
   },
   {
@@ -106,7 +106,7 @@ const demoNotes = [
     style: { backgroundColor: '#aeccdc' },
     info: {
       title: 'Yad Eliyahu Arena',
-      url: '/assets/img/note/img/HP_ArenaFull.jpg'
+      url: 'assets/img/note/img/HP_ArenaFull.jpg'
     }
   },
   {
@@ -176,18 +176,7 @@ const demoNotes = [
     style: { backgroundColor: '#fef3c7' },
     info: {
       title: 'Quiet morning',
-      url: '/assets/img/note/img/morning view.jfif'
-    }
-  },
-  {
-    id: 'rPUJ2n',
-    createdAt: 1744331100897,
-    type: 'NoteImg',
-    isPinned: false,
-    style: { backgroundColor: '#f39f76' },
-    info: {
-      title: 'Coffee corner',
-      url: '/assets/img/note/img/coffee.jfif'
+      url: 'assets/img/note/img/morning view.jfif'
     }
   },
   {
@@ -198,7 +187,7 @@ const demoNotes = [
     style: { backgroundColor: '#ede9fe' },
     info: {
       title: 'Peaceful hike',
-      url: '/assets/img/note/img/hike.jfif'
+      url: 'assets/img/note/img/hike.jfif'
     }
   },
   {
@@ -247,6 +236,17 @@ const demoNotes = [
     info: {
       title: 'App ideas',
       txt: 'Budget tracker with receipts scan and smart labels'
+    }
+  },
+  {
+    id: 'rPUJ2n',
+    createdAt: 1744331100897,
+    type: 'NoteImg',
+    isPinned: false,
+    style: { backgroundColor: '#f39f76' },
+    info: {
+      title: 'Coffee corner',
+      url: 'assets/img/note/img/coffee.jfif'
     }
   },
   {
