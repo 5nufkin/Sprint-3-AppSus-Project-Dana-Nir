@@ -4,10 +4,11 @@ import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.servic
 const { useState, useEffect } = React
 const { useNavigate } = ReactRouterDOM
 
-export function ComposeMail() {
-    const [mail, setMail] = useState(mailsService.getEmptyMail())
+export function ComposeMail({ onToggleCompose, draftToCompose }) {
+    const [mail, setMail] = useState(draftToCompose ? draftToCompose : mailsService.getEmptyMail())
     const [ mailHeader, setMailHeader] = useState('New Message')
     const [isOpen, setIsOpen ] = useState(true)
+    // const [isMinimize, setIsMinimize ] = useState(false)
 
     const navigate = useNavigate()
 
@@ -34,7 +35,7 @@ export function ComposeMail() {
         setMail(prevMail => ({ ...prevMail, sentAt: Date.now() }))
         mailsService.save(mail)
         .then(() => {
-            navigate('/mail')
+            onToggleCompose(false)
             showSuccessMsg('Email sent successfully!')
         })
         .catch(err => {
@@ -43,16 +44,23 @@ export function ComposeMail() {
         })
     }
 
-    function onSaveMail(ev) {
-        if (ev) ev.preventDefault()
+    function onSaveMail(ev, shouldMinimize = false) {
+        if (ev) {
+            ev.preventDefault()
+            ev.stopPropagation()
+        }
         if (!mail.subject && !mail.to && !mail.body) {
-            navigate('/mail')
+            onToggleCompose(false)
             return
         }
+        setIsOpen(false)
+        
         mailsService.save(mail)
             .then(() => {
-                navigate('/mail')
-                console.log(mail)
+                if (!shouldMinimize){
+                    onToggleCompose(false)
+                }
+                showSuccessMsg('Email saved to drafts!')
             })
             .catch(err => {
                 console.log('Cannot save mail to drafts!:', err)
@@ -62,18 +70,25 @@ export function ComposeMail() {
 
     function toggleIsOpen(ev) {
         ev.preventDefault()
-        setIsOpen(!isOpen)
+        console.log('before change: ', isOpen)
+        if (isOpen) {
+            // setIsMinimize(true)
+            onSaveMail(ev, true)
+        } else {
+            setIsOpen(true)
+            // setIsMinimize(false)
+        }
     }
 
     const { to, subject, body } = mail
 
     return (  
-        <form className={`compose-mail flex ${isOpen ? 'open' : 'collapsed'}`}>
-            <section className={`mail-header flex space-between ${isOpen ? '' : 'close-width'}`} onClick={toggleIsOpen}>
+        <form className={`compose-mail flex ${isOpen ? 'open' : 'collapsed' }`}>
+            <section className={`mail-header flex space-between ${isOpen ? '' : 'close-width' }`} onClick={toggleIsOpen}>
                 <div>{mailHeader}</div>
                 <div>
                 <button onClick={toggleIsOpen}>-</button>
-                <button onClick={onSaveMail}><img src={'/assets/img/mail/close.svg'} alt="close icon" 
+                <button onClick={onSaveMail}><img src={'assets/img/mail/close.svg'} alt="close icon" 
                 style={{ width: '16px', height: '16px'}} /></button>
                 </div>
             </section>
@@ -90,11 +105,10 @@ export function ComposeMail() {
 
                 <textarea name="body" id="body" value={body} onChange={handleChange}></textarea>
 
-            <   button className="send-btn" onClick={onSendMail}>Send</button>
+                <button className="send-btn" onClick={onSendMail}>Send</button>
             </div>}
 
 
         </form>
-
     )
 }

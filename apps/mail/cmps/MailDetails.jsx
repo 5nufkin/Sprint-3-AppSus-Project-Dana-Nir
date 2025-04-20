@@ -76,11 +76,11 @@ export function MailDetails() {
                         <p className="folder-tag">update with filter by!!!</p> {/* this needs to be updated with filter */}
                     </div>
                     <div className="flex">
-                    <button><img src={'/assets/img/mail/print.svg'} alt="Inbox icon" /></button>
-                    <button><img src={'/assets/img/mail/new_window.svg'} alt="Inbox icon" /></button>
+                    <button><img src={'assets/img/mail/print.svg'} alt="Inbox icon" /></button>
+                    <button><img src={'assets/img/mail/new_window.svg'} alt="Inbox icon" /></button>
                     </div>
                 </div>
-                    <img className="avatar" src={'/assets/img/mail/user_img.png'} alt=""  style={{ width: '32px', height: '32px', borderRadius: '50%' }}/>
+                    <img className="avatar" src={'assets/img/mail/user_img.png'} alt=""  style={{ width: '32px', height: '32px', borderRadius: '50%' }}/>
                     <div className="mail-recipients flex space-between align-center">
                         <div>
                             <p>{from === user ? 'from me' : from}</p>
@@ -99,14 +99,14 @@ export function MailDetails() {
                                     <polygon points="12 1 14 9 22 9 16 14 18 22 12 18 6 22 8 14 2 9 10 9" />
                                 </svg>
                             </button>
-                            <button><img src={'/assets/img/mail/reply.svg'} alt="Inbox icon" /></button>
-                            <button><img src={'/assets/img/mail/more.svg'} alt="Inbox icon" /></button>
+                            <button><img src={'assets/img/mail/reply.svg'} alt="Inbox icon" /></button>
+                            <button><img src={'assets/img/mail/more.svg'} alt="Inbox icon" /></button>
                         </div>
                     </div>
                     <textarea className="body" name="body" id="body" value={body || ''} readOnly></textarea>
                     <div className="send-options">
-                        <button><img src={'/assets/img/mail/reply.svg'} alt="Inbox icon" /> Reply</button>
-                        <button><img src={'/assets/img/mail/reply.svg'} alt="Inbox icon" 
+                        <button><img src={'assets/img/mail/reply.svg'} alt="Inbox icon" /> Reply</button>
+                        <button><img src={'assets/img/mail/reply.svg'} alt="Inbox icon" 
                             style={{ transform: 'scaleX(-1)' }} /> Forward</button>
                     </div>
             </section>

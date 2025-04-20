@@ -1,12 +1,13 @@
 import { mailsService } from '../services/mail.service.js'
 
 const { useState, useEffect } = React
-const { useNavigate } = ReactRouterDOM
+const { useNavigate, useParams } = ReactRouterDOM
 
-export function MailNav({ onToggleCompose, onSetFilterBy, mails, filterBy }) {
+export function MailNav({ onToggleCompose, onSetFilterBy, onSetSortBy, mails, filterBy }) {
 
     const [unreadCount, setUnreadCount] = useState()
     const pageFlags = markCurrPage(filterBy)
+    const { mailId } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -68,41 +69,47 @@ export function MailNav({ onToggleCompose, onSetFilterBy, mails, filterBy }) {
 
     function onChangePage(page) {
         onSetFilterBy({ ...filterBy, status: page })
-        navigate('/mail')
+        if(page === 'draft') onSetSortBy({ createdAt : -1  })
+            else onSetSortBy({ sentAt : -1  })
+        setTimeout(() => {
+            if (mailId) {
+                navigate('/mail')
+            }
+        }, 700);
     }
 
 
     return (
         <nav className="mail-nav">
-            <button className="compose-btn flex align-items" onClick={onToggleCompose}><img src="/assets/img/mail/compose.png"/>
+            <button className="compose-btn flex align-items" onClick={onToggleCompose}><img src="assets/img/mail/compose.svg"/>
                 Compose</button>
             <div className="mail-boxes">
             
             {pageFlags.inbox ? (
-                <button onClick={() => onChangePage('inbox')} className="active"><span className="selected"><img src={`/assets/img/mail/inbox_selected.svg`} />
+                <button onClick={() => onChangePage('inbox')} className="active"><span className="selected"><img src={`assets/img/mail/inbox_selected.svg`} />
                 Inbox</span><span className="selected">{unreadCount}</span></button>) : 
-                (<button onClick={() => onChangePage('inbox')}><span><img src={`/assets/img/mail/inbox.svg`} />
+                (<button onClick={() => onChangePage('inbox')}><span><img src={`assets/img/mail/inbox.svg`} />
                 Inbox</span><span>{unreadCount}</span></button>)}
             
             {pageFlags.starred ? (
-                <button onClick={() => onChangePage('starred')} className="active"><span className="selected"><img src={`/assets/img/mail/starred_selected.svg`} />
+                <button onClick={() => onChangePage('starred')} className="active"><span className="selected"><img src={`assets/img/mail/starred_selected.svg`} />
                 Starred</span><span></span></button> ) :
-                (<button onClick={() => onChangePage('starred')}><span><img src={`/assets/img/mail/starred.svg`} />Starred</span><span></span></button>)}
+                (<button onClick={() => onChangePage('starred')}><span><img src={`assets/img/mail/starred.svg`} />Starred</span><span></span></button>)}
 
             {pageFlags.sent ? (
-                <button onClick={() => onChangePage('sent')} className="active"><span className="selected"><img src={`/assets/img/mail/sent_selected.svg`} />
+                <button onClick={() => onChangePage('sent')} className="active"><span className="selected"><img src={`assets/img/mail/sent_selected.svg`} />
                 Sent</span><span></span></button> ) :
-                (<button onClick={() => onChangePage('sent')}><span><img src={`/assets/img/mail/sent.svg`} />Sent</span><span></span></button>)}
+                (<button onClick={() => onChangePage('sent')}><span><img src={`assets/img/mail/sent.svg`} />Sent</span><span></span></button>)}
             
             {pageFlags.draft ? (
-                <button onClick={() => onChangePage('draft')} className="active"><span className="selected"><img src={`/assets/img/mail/draft_selected.svg`} />
+                <button onClick={() => onChangePage('draft')} className="active"><span className="selected"><img src={`assets/img/mail/draft_selected.svg`} />
                 Draft</span><span></span></button> ) :
-                (<button onClick={() => onChangePage('draft')}><span><img src={`/assets/img/mail/draft.svg`} />Draft</span><span></span></button>)}
+                (<button onClick={() => onChangePage('draft')}><span><img src={`assets/img/mail/draft.svg`} />Draft</span><span></span></button>)}
             
             {pageFlags.trash ? (
-                <button onClick={() => onChangePage('trash')} className="active"><span className="selected"><img src={`/assets/img/mail/trash_selected.svg`} />
+                <button onClick={() => onChangePage('trash')} className="active"><span className="selected"><img src={`assets/img/mail/trash_selected.svg`} />
                 Trash</span><span></span></button> ) :
-                (<button onClick={() => onChangePage('trash')}><span><img src={`/assets/img/mail/trash.svg`} />Trash</span><span></span></button>)}
+                (<button onClick={() => onChangePage('trash')}><span><img src={`assets/img/mail/trash.svg`} />Trash</span><span></span></button>)}
 
             </div>
         </nav>
