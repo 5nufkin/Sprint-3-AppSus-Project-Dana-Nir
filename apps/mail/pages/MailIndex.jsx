@@ -2,8 +2,8 @@ import { mailsService } from '../services/mail.service.js'
 import { ComposeMail } from '../cmps/ComposeMail.jsx'
 import { MailNav } from '../cmps/MailNav.jsx'
 import { MailTxtFilter } from '../cmps/MailTxtFilter.jsx'
-import { MailOtherFilterAndSort } from '../cmps/MailOtherFilterAndSort.jsx'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
+import { Loader } from '../../../cmps/Loader.jsx'
 
 const { useState, useEffect } = React
 const { useLocation, Outlet, Link, useParams, useNavigate } = ReactRouterDOM
@@ -16,7 +16,10 @@ export function MailIndex() {
   const [filterBy, setFilterBy] = useState(mailsService.getDefaultFilter())
   const [sortBy, setSortBy] = useState(mailsService.getDefaultSortBy())
   const [draftToCompose, setDraftToCompose] = useState('')
-
+  // const [menu, setMenu] = useState(true)
+  const [menuOpen, setMenuOpen] = useState('')
+  // let menuOpen = ''
+  
   const { mailId } = useParams()
   const navigate = useNavigate()
 
@@ -106,22 +109,28 @@ export function MailIndex() {
     setSortBy({ ...sortByToEdit })
   }
 
-  if (!mails) return <Loader />
+  function onToggleMenu(ev) {
+    ev.stopPropagation()
+    // setMenu(!menu)
+    setMenuOpen('menu-open')
+    // menuOpen = menuOpen ? '' : 'menu-open'
+
+  }
+
+  if (mails.length === 0) return <Loader />
 
   return (
     <div className='mail-app grid'>
-      <MailNav onToggleCompose={onToggleCompose} onSetFilterBy={onSetFilterBy} onSetSortBy={onSetSortBy}
-        mails={mails} filterBy={filterBy} sortBy={sortBy} />
-      <MailTxtFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
+      {
+      // menu && 
+      (<MailNav onToggleCompose={onToggleCompose} onSetFilterBy={onSetFilterBy} onSetSortBy={onSetSortBy}
+        mails={mails} filterBy={filterBy} sortBy={sortBy} menuOpen={menuOpen} /> )}
+      <MailTxtFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy} onToggleMenu={onToggleMenu} menuOpen={menuOpen}/>
       <div className="details-list-wrapper">
-        <div className="filter-container">
-          <MailOtherFilterAndSort onSetFilterBy={onSetFilterBy} onSetSortBy={onSetSortBy}
-            filterBy={filterBy} sortBy={sortBy} />
-        </div>
         <Outlet context={{
           onMoveMailToTrash,
           markAsRead,
-          ...(mailId ? { markAsStarred, filterBy, sortBy } : { mails, onRemoveMail, onToggleCompose })
+          ...(mailId ? { markAsStarred } : { mails, onRemoveMail, onToggleCompose, onSetFilterBy, onSetSortBy, filterBy, sortBy  })
         }} />
       </div>
 

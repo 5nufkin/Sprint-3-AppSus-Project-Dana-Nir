@@ -10,7 +10,9 @@ export function MailPreview({ mail, markAsRead, onMoveMailToTrash, onRemoveMail,
 
     const dateToFormat = sentAt ? sentAt : createdAt
     const date = new Date(dateToFormat)
+    const now = new Date()
     const currentYear = new Date().getFullYear()
+    const isToday = date.toDateString() === now.toDateString()
 
     function onShowMail() {
         if(!mail.sentAt) onToggleCompose(false, mail.id)
@@ -34,22 +36,20 @@ export function MailPreview({ mail, markAsRead, onMoveMailToTrash, onRemoveMail,
         setIsMailRead(!isMailRead)
     }
 
-    const formattedDate = date.getFullYear() === currentYear
-        ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).replace(' ', ', ')
-        : date.getFullYear()
+    const formattedDate = isToday
+        ? date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' })
+        : date.getFullYear() === currentYear
+            ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+            : date.getFullYear()
 
     const unread = isMailRead ? 'read' : 'unread'
 
     return (
             <tr onClick={onShowMail} style={{ cursor: 'pointer' }}>
                 <td className={unread}>{from}</td>
-                <td className={unread}>{subject}</td>
-                <td className={unread === 'read' ? unread : ''} style={{
-                    color: 'grey',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                }}>{body}</td>
+
+                <td className={unread} ><span className={unread}>{subject}</span> <span className="not-bold" style={{
+                    color: 'grey', }}>{body}</span></td>
                 
                 <td className={unread}>
                     <span className="date">{formattedDate}</span>

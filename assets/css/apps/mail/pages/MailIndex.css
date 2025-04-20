@@ -2,11 +2,11 @@
 .mail-app {
    background-color: #f8fafd;
    grid-auto-flow: column;
-   grid-template-columns: auto 1fr;
+   /* grid-template-columns: auto 1fr;
    grid-template-rows: auto 1fr;
    grid-template-areas:
     "nav filter"
-    "nav details-list";
+    "nav details-list"; */
    width: 100dvw;
    height: calc(100dvh - 60px - 1.5rem);
    overflow: hidden;
@@ -18,7 +18,7 @@
 }
 
 .details-list-wrapper {
-   /* overflow-y: auto; */
+   overflow-y: auto;
    height: 100%;
    min-height: 0;
    grid-area: details-list;

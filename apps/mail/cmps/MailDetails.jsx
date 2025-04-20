@@ -62,7 +62,7 @@ export function MailDetails() {
         
           const { subject, from, to, sentAt, body } = mail
 
-          // if (!mail.id) return <Loader />
+          if (!mail.id) return <Loader />
           
     return (
         <section className='mail-details mail-list-details-container'>
