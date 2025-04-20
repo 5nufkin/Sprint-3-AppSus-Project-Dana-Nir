@@ -3,160 +3,408 @@ import { utilService } from "../../../services/util.service.js"
 
 const NOTE_KEY = 'noteDB'
 
-var demoNotes = [
+// var demoNotes = [
+//   {
+//     id: utilService.makeId(),
+//     createdAt: 1687526400000,
+//     type: 'NoteTxt',
+//     isPinned: false,
+//     style: {
+//       backgroundColor: '#ffffff'
+//     },
+//     info: {
+//       title: 'Grocery List',
+//       txt: 'Buy groceries: eggs, almond milk, avocados, and coffee filters'
+//     }
+//   },
+//   {
+//     id: utilService.makeId(),
+//     createdAt: 1678560000000,
+//     type: 'NoteTodos',
+//     isPinned: false,
+//     style: {
+//       backgroundColor: '#e0f2fe'
+//     },
+//     info: {
+//       title: 'Weekend Chores',
+//       todos: [
+//         { txt: 'Laundry', doneAt: null },
+//         { txt: 'Vacuum living room', doneAt: null },
+//         { txt: 'Clean out fridge', doneAt: Date.now() - 86400000 }
+//       ]
+//     }
+//   },
+//   {
+//     id: utilService.makeId(),
+//     createdAt: 1670985600000,
+//     type: 'NoteTxt',
+//     isPinned: false,
+//     style: {
+//       backgroundColor: '#ffffff'
+//     },
+//     info: {
+//       title: '',
+//       txt: 'Wi-Fi password at mom’s: sunshine2022!'
+//     }
+//   },
+//   {
+//     id: utilService.makeId(),
+//     createdAt: 1659235200000,
+//     type: 'NoteTodos',
+//     isPinned: false,
+//     style: {
+//       backgroundColor: '#fce7f3'
+//     },
+//     info: {
+//       title: 'Work Tasks',
+//       todos: [
+//         { txt: 'Finish quarterly report', doneAt: Date.now() - 172800000 },
+//         { txt: 'Email client feedback', doneAt: null },
+//         { txt: 'Prepare Monday presentation', doneAt: null }
+//       ]
+//     }
+//   },
+//   {
+//     id: utilService.makeId(),
+//     createdAt: 1656729600000,
+//     type: 'NoteTxt',
+//     isPinned: false,
+//     style: {
+//       backgroundColor: '#ffffff'
+//     },
+//     info: {
+//       title: 'Packing List',
+//       txt: 'Things to pack: charger, toothbrush, hiking shoes, sunscreen'
+//     }
+//   },
+//   {
+//     id: utilService.makeId(),
+//     createdAt: 1664668800000,
+//     type: 'NoteTxt',
+//     isPinned: false,
+//     style: {
+//       backgroundColor: '#ffffff'
+//     },
+//     info: {
+//       title: '',
+//       txt: 'Reminder: renew passport before February'
+//     }
+//   },
+//   {
+//     id: utilService.makeId(),
+//     createdAt: 1662067200000,
+//     type: 'NoteTodos',
+//     isPinned: false,
+//     style: {
+//       backgroundColor: '#dcfce7'
+//     },
+//     info: {
+//       title: 'Goals for the Month',
+//       todos: [
+//         { txt: 'Read 2 books', doneAt: null },
+//         { txt: 'Run 20km', doneAt: null },
+//         { txt: 'Meditate daily', doneAt: Date.now() - 604800000 }
+//       ]
+//     }
+//   },
+//   {
+//     id: utilService.makeId(),
+//     createdAt: 1644883200000,
+//     type: 'NoteTxt',
+//     isPinned: false,
+//     style: {
+//       backgroundColor: '#ffffff'
+//     },
+//     info: {
+//       title: 'Book Wishlist',
+//       txt: 'Books to check out: “Atomic Habits”, “The Midnight Library”, “Sapiens”'
+//     }
+//   },
+//   {
+//     id: utilService.makeId(),
+//     createdAt: 1680355200000,
+//     type: 'NoteImg',
+//     isPinned: false,
+//     info: {
+//       title: 'Morning vibes',
+//       url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb'
+//     },
+//     style: {
+//       backgroundColor: '#fef3c7'
+//     }
+//   },
+//   {
+//     id: utilService.makeId(),
+//     createdAt: 1694457600000,
+//     type: 'NoteImg',
+//     isPinned: false,
+//     info: {
+//       title: 'Cozy afternoon coffee',
+//       url: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93'
+//     },
+//     style: {
+//       backgroundColor: '#fff7ed'
+//     }
+//   },
+//   {
+//     id: utilService.makeId(),
+//     createdAt: 1669852800000,
+//     type: 'NoteImg',
+//     isPinned: false,
+//     info: {
+//       title: 'Dreamy mountain view',
+//       url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d'
+//     },
+//     style: {
+//       backgroundColor: '#ede9fe'
+//     }
+//   }
+// ]
+
+const demoNotes = [
   {
-    id: utilService.makeId(),
-    createdAt: 1687526400000,
-    type: 'NoteTxt',
+    id: "BkISPH",
+    createdAt: 1744331100884,
+    type: "NoteTxt",
     isPinned: false,
-    style: {
-      backgroundColor: '#ffffff'
-    },
+    style: { backgroundColor: "#fff8b8" },
     info: {
-      title: 'Grocery List',
-      txt: 'Buy groceries: eggs, almond milk, avocados, and coffee filters'
+      title: "Maccabi Game Plan",
+      txt: "Check Euroleague stats before Thursday."
     }
   },
   {
-    id: utilService.makeId(),
-    createdAt: 1678560000000,
-    type: 'NoteTodos',
+    id: "GlxoPD",
+    createdAt: 1744331100885,
+    type: "NoteTxt",
     isPinned: false,
-    style: {
-      backgroundColor: '#e0f2fe'
-    },
+    style: { backgroundColor: "#efeff1" },
     info: {
-      title: 'Weekend Chores',
+      title: "Celtics Recap",
+      txt: "Tatum had 40 points in the comeback win!"
+    }
+  },
+  {
+    id: "Ptgs7A",
+    createdAt: 1744331100886,
+    type: "NoteImg",
+    isPinned: false,
+    style: { backgroundColor: "#f6e2dd" },
+    info: {
+      title: "Yad Eliyahu Arena",
+      url: "https://images.unsplash.com/photo-1580741315300-c99c5278ee07"
+    }
+  },
+  {
+    id: "Y6uB5h",
+    createdAt: 1744331100887,
+    type: "NoteImg",
+    isPinned: false,
+    style: { backgroundColor: "#d4e4ed" },
+    info: {
+      title: "Celtics Fans",
+      url: "https://images.unsplash.com/photo-1558807012-d2e3c4e86ef4"
+    }
+  },
+  {
+    id: "Jgxo44",
+    createdAt: 1744331100888,
+    type: "NoteTodos",
+    isPinned: false,
+    style: { backgroundColor: "#fff8b8" },
+    info: {
+      title: "Grocery Shopping",
       todos: [
-        { txt: 'Laundry', doneAt: null },
-        { txt: 'Vacuum living room', doneAt: null },
-        { txt: 'Clean out fridge', doneAt: Date.now() - 86400000 }
+        { txt: "Milk", doneAt: 1745171898055 },
+        { txt: "Eggs", doneAt: null },
+        { txt: "Cheese", doneAt: 1745171898055 },
+        { txt: "Spinach", doneAt: null },
+        { txt: "Tofu", doneAt: 1745171898055 },
+        { txt: "Almond Butter", doneAt: null }
       ]
     }
   },
   {
-    id: utilService.makeId(),
-    createdAt: 1670985600000,
-    type: 'NoteTxt',
+    id: "TdoR8P",
+    createdAt: 1744331100889,
+    type: "NoteTodos",
     isPinned: false,
-    style: {
-      backgroundColor: '#ffffff'
-    },
+    style: { backgroundColor: "#faafa8" },
     info: {
-      title: '',
-      txt: 'Wi-Fi password at mom’s: sunshine2022!'
-    }
-  },
-  {
-    id: utilService.makeId(),
-    createdAt: 1659235200000,
-    type: 'NoteTodos',
-    isPinned: false,
-    style: {
-      backgroundColor: '#fce7f3'
-    },
-    info: {
-      title: 'Work Tasks',
+      title: "Weekend Chores",
       todos: [
-        { txt: 'Finish quarterly report', doneAt: Date.now() - 172800000 },
-        { txt: 'Email client feedback', doneAt: null },
-        { txt: 'Prepare Monday presentation', doneAt: null }
+        { txt: "Laundry", doneAt: 1745171898055 },
+        { txt: "Dishes", doneAt: null },
+        { txt: "Groceries", doneAt: 1745171898055 },
+        { txt: "Clean car", doneAt: null }
       ]
     }
   },
   {
-    id: utilService.makeId(),
-    createdAt: 1656729600000,
-    type: 'NoteTxt',
+    id: "Uxr91A",
+    createdAt: 1744331100890,
+    type: "NoteTodos",
     isPinned: false,
-    style: {
-      backgroundColor: '#ffffff'
-    },
+    style: { backgroundColor: "#b4ddd3" },
     info: {
-      title: 'Packing List',
-      txt: 'Things to pack: charger, toothbrush, hiking shoes, sunscreen'
-    }
-  },
-  {
-    id: utilService.makeId(),
-    createdAt: 1664668800000,
-    type: 'NoteTxt',
-    isPinned: false,
-    style: {
-      backgroundColor: '#ffffff'
-    },
-    info: {
-      title: '',
-      txt: 'Reminder: renew passport before February'
-    }
-  },
-  {
-    id: utilService.makeId(),
-    createdAt: 1662067200000,
-    type: 'NoteTodos',
-    isPinned: false,
-    style: {
-      backgroundColor: '#dcfce7'
-    },
-    info: {
-      title: 'Goals for the Month',
+      title: "React Study Plan",
       todos: [
-        { txt: 'Read 2 books', doneAt: null },
-        { txt: 'Run 20km', doneAt: null },
-        { txt: 'Meditate daily', doneAt: Date.now() - 604800000 }
+        { txt: "useState recap", doneAt: 1745171898055 },
+        { txt: "Build Todo App", doneAt: 1745171898055 },
+        { txt: "Context API", doneAt: null },
+        { txt: "Router basics", doneAt: null }
       ]
     }
   },
   {
-    id: utilService.makeId(),
-    createdAt: 1644883200000,
-    type: 'NoteTxt',
+    id: "KwR7r1",
+    createdAt: 1744331100891,
+    type: "NoteTodos",
     isPinned: false,
-    style: {
-      backgroundColor: '#ffffff'
-    },
+    style: { backgroundColor: "#d3bfdb" },
     info: {
-      title: 'Book Wishlist',
-      txt: 'Books to check out: “Atomic Habits”, “The Midnight Library”, “Sapiens”'
+      title: "Books To Read",
+      todos: [
+        { txt: "Atomic Habits", doneAt: 1745171898055 },
+        { txt: "The Midnight Library", doneAt: null },
+        { txt: "Sapiens", doneAt: 1745171898055 }
+      ]
     }
   },
   {
-    id: utilService.makeId(),
-    createdAt: 1680355200000,
-    type: 'NoteImg',
+    id: "gTeuaR",
+    createdAt: 1744331100892,
+    type: "NoteTxt",
     isPinned: false,
+    style: { backgroundColor: "#aeccdc" },
     info: {
-      title: 'Morning vibes',
-      url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb'
-    },
-    style: {
-      backgroundColor: '#fef3c7'
+      title: "WiFi",
+      txt: "Mom's WiFi password: sunshine2024"
     }
   },
   {
-    id: utilService.makeId(),
-    createdAt: 1694457600000,
-    type: 'NoteImg',
+    id: "xp9KvQ",
+    createdAt: 1744331100893,
+    type: "NoteTxt",
     isPinned: false,
+    style: { backgroundColor: "#efeff1" },
     info: {
-      title: 'Cozy afternoon coffee',
-      url: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93'
-    },
-    style: {
-      backgroundColor: '#fff7ed'
+      title: "Dream trip ✈️",
+      txt: "Japan itinerary ideas: Tokyo → Kyoto → Nara"
     }
   },
   {
-    id: utilService.makeId(),
-    createdAt: 1669852800000,
-    type: 'NoteImg',
+    id: "Aqz4pX",
+    createdAt: 1744331100894,
+    type: "NoteTxt",
     isPinned: false,
+    style: { backgroundColor: "#e9e3d4" },
     info: {
-      title: 'Dreamy mountain view',
-      url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d'
-    },
-    style: {
-      backgroundColor: '#ede9fe'
+      title: "Ideas",
+      txt: "Open a weekend café with books and vinyl"
+    }
+  },
+  {
+    id: "Pxr1Ln",
+    createdAt: 1744331100895,
+    type: "NoteTxt",
+    isPinned: false,
+    style: { backgroundColor: "#f39f76" },
+    info: {
+      title: "Maccabi Mood",
+      txt: "🏀 Feels like 2004 again 🔥"
+    }
+  },
+  {
+    id: "xZrgqx",
+    createdAt: 1744331100896,
+    type: "NoteImg",
+    isPinned: false,
+    style: { backgroundColor: "#fef3c7" },
+    info: {
+      title: "Quiet morning",
+      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+    }
+  },
+  {
+    id: "rPUJ2n",
+    createdAt: 1744331100897,
+    type: "NoteImg",
+    isPinned: false,
+    style: { backgroundColor: "#f39f76" },
+    info: {
+      title: "Coffee corner",
+      url: "https://images.unsplash.com/photo-1509042239860-f550ce710b93"
+    }
+  },
+  {
+    id: "ewpR5j",
+    createdAt: 1744331100898,
+    type: "NoteImg",
+    isPinned: false,
+    style: { backgroundColor: "#ede9fe" },
+    info: {
+      title: "Peaceful hike",
+      url: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d"
+    }
+  },
+  {
+    id: "JekD8y",
+    createdAt: 1744331100899,
+    type: "NoteTxt",
+    isPinned: false,
+    style: { backgroundColor: "#f6e2dd" },
+    info: {
+      title: "רשימת קניות",
+      txt: "חלב, גבינה, פסטה, לחם, אבוקדו"
+    }
+  },
+  {
+    id: "PAkeq7",
+    createdAt: 1744331100900,
+    type: "NoteTodos",
+    isPinned: false,
+    style: { backgroundColor: "#e2f6d3" },
+    info: {
+      title: "To-do בערב",
+      todos: [
+        { txt: "לבדוק מיילים", doneAt: 1745171898055 },
+        { txt: "לקרוא ספר", doneAt: null },
+        { txt: "לאכול משהו בריא", doneAt: null }
+      ]
+    }
+  },
+  {
+    id: "YbR6pK",
+    createdAt: 1744331100901,
+    type: "NoteTxt",
+    isPinned: false,
+    style: { backgroundColor: "#faafa8" },
+    info: {
+      title: "Quote I liked",
+      txt: "“Discipline equals freedom.” – Jocko Willink"
+    }
+  },
+  {
+    id: "WqlFpt",
+    createdAt: 1744331100902,
+    type: "NoteTxt",
+    isPinned: false,
+    style: { backgroundColor: "#d4e4ed" },
+    info: {
+      title: "App ideas",
+      txt: "Budget tracker with receipts scan and smart labels"
+    }
+  },
+  {
+    id: "Xumg2R",
+    createdAt: 1744331100903,
+    type: "NoteTxt",
+    isPinned: false,
+    style: { backgroundColor: "#fff8b8" },
+    info: {
+      title: "Birthday gift for Dana",
+      txt: "Maybe a Kindle? Or concert tickets?"
     }
   }
 ]
