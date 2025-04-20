@@ -2,6 +2,7 @@
 
  .notes-container {
    grid-column: 2;
+   
    column-count: auto;
    column-width: 240px;
    column-gap: 16px;
