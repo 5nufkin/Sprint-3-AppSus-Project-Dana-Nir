@@ -1,3 +1,4 @@
+import { Loader } from "../../../cmps/Loader.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
@@ -105,7 +106,7 @@ export function NoteIndex() {
       })
   }
 
-  if (!notes) return <div>Loading notes...</div>
+  if (!notes) return <Loader />
 
   return (
     <section className="note-index">
