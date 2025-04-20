@@ -10,7 +10,7 @@ export function NoteTodos({ note, onToggleTodo }) {
         return (
           <li key={idx}>
             <label>
-              <input type="checkbox" checked={todo.doneAt} onChange={() => onToggleTodo(note.id)} />
+              <input type="checkbox" checked={!!todo.doneAt} onChange={() => onToggleTodo(note.id, idx)} />
               <span className={todo.doneAt ? 'done' : ''}>{todo.txt}</span>
             </label>
           </li>

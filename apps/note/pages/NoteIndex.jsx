@@ -60,8 +60,30 @@ export function NoteIndex() {
       })
   }
 
-  function onToggleTodo(noteId) {
-    console.log('NOTEID', noteId)
+  function onToggleTodo(noteId, todoIdx) {
+    const updatedNotes = notes.map(note => {
+      if (note.id !== noteId) return note
+
+      const updatedTodos = note.info.todos.map((todo, idx) =>
+        idx === todoIdx
+          ? { ...todo, doneAt: todo.doneAt ? null : Date.now() }
+          : todo
+      )
+
+      return {
+        ...note,
+        info: {
+          ...note.info,
+          todos: updatedTodos
+        }
+      }
+    })
+
+    setNotes(updatedNotes)
+
+    const updatedNote = updatedNotes.find(note => note.id === noteId)
+    noteService.save(updatedNote)
+      .catch(err => console.log('err', err))
   }
 
   if (!notes) return <div>Loading notes...</div>

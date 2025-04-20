@@ -5,6 +5,7 @@
   --clr-black: #000000;
   --clr-white: #fff;
   --clr-txt-base: #202124;
+  --clr-todo-done: #5f6368;
 
   /* Buttons */
   --clr-btn-base: #3C4043;
@@ -21,4 +22,5 @@
   --clr-sb-icon-selected: #202124;
   --clr-sb-hover: #f1f3f4;
   --clr-sb-selected: #feefc3;
+
 }

@@ -1,6 +1,10 @@
 .note-actions-container {
   display: flex;
-  gap: .5rem;
+  justify-content: center;
+}
+
+.note-actions-container>*:not(:last-child) {
+  margin-inline-end: .5rem;
 }
 
 .note-icon-btn {
