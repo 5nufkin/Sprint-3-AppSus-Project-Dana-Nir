@@ -1,6 +1,7 @@
 import { Loader } from "../../../cmps/Loader.jsx"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 import { AddNote } from "../cmps/AddNote.jsx"
+import { Header } from "../cmps/Header.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { SideBar } from "../cmps/SideBar.jsx"
 import { noteService } from "../services/note.service.js"
@@ -11,13 +12,14 @@ export function NoteIndex() {
   const [notes, setNotes] = useState(null)
   const [newNote, setNewNote] = useState(noteService.getEmptyNote())
   const [isAddExpanded, setIsAddExpanded] = useState(false)
+  const [filterBy, setFilterBy] = useState('')
 
   useEffect(() => {
     loadNotes()
-  }, [])
+  }, [filterBy])
 
   function loadNotes() {
-    noteService.query()
+    noteService.query(filterBy)
       .then(notes => {
         setNotes(notes)
       })
@@ -31,6 +33,13 @@ export function NoteIndex() {
     let { value, name: field, type } = target
 
     setNewNote(prevNote => ({ ...prevNote, info: { ...prevNote.info, [field]: value } }))
+  }
+
+  function handleSearchBarChange({ target }) {
+    const field = target.name
+    let value = target.value
+
+    setFilterBy(prevFilter => ({ ...prevFilter, [field]: value }))
   }
 
   function addNote(ev) {
@@ -110,6 +119,10 @@ export function NoteIndex() {
 
   return (
     <section className="note-index">
+      <Header
+        handleSearchBarChange={handleSearchBarChange}
+        filterBy={filterBy}
+      />
       <SideBar />
 
       <AddNote

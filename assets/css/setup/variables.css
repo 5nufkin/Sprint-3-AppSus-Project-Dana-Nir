@@ -5,6 +5,12 @@
   --clr-black: #000000;
   --clr-white: #fff;
   --clr-txt-base: #202124;
+  --clr-header-light: #5f6368;
+
+  /* Header */
+  --clr-search-bg: #f2f3f4;
+
+  /*/ TODOS  */
   --clr-todo-done: #5f6368;
 
   /* Buttons */
