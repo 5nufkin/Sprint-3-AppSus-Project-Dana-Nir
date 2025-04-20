@@ -1,1 +1,12 @@
  /* home */
+ 
+ .home{
+  padding-block: 1rem;
+ }
+
+ .home .img-container{
+  max-width: 600px;
+  width: 80%;
+  border-radius: 1rem;
+  overflow: clip;
+ }
