@@ -10,7 +10,7 @@ export function AddNoteCollapsed({ addNoteRef, isAddExpanded, newNote, handleCha
 
         <section className="add-note-input-btns">
           <button type="button" className="note-icon-btn" title="New list">
-            <CheckBoxIcon/>
+            <CheckBoxIcon />
           </button>
 
           <button type="button" className="note-icon-btn" title="New note with drawing">
