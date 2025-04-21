@@ -37,7 +37,7 @@
 }
 
 .note-close-btn {
-  font-family: 'google-sans-medium';
+  font-family: 'google-sans-medium',sans-serif;
   margin-inline-end: .375rem;
   color: rgba(0, 0, 0, 0.87);
   line-height: 1.25rem;

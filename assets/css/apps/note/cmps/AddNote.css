@@ -42,7 +42,7 @@
 .add-note-container .input-title {
   padding: .625rem 0.9375rem;
 
-  font-family: 'google-sans-medium';
+  font-family: 'google-sans-medium',sans-serif;
   font-size: 1rem;
   line-height: 1.5rem;
   letter-spacing: .00625em;
@@ -50,7 +50,7 @@
 
 .input-content::placeholder {
   color: var(--clr-txt-placeholder);
-  font-family: 'google-sans-medium';
+  font-family: 'google-sans-medium',sans-serif;
   font-size: 1rem;
   line-height: 1.5rem;
   letter-spacing: 0.00625rem;

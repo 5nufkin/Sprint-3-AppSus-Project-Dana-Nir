@@ -5,7 +5,7 @@
   line-height: 1.5rem;
   border: 1px solid rgb(224, 224, 224);
   color: var(--clr-txt-base);
-  font-family: 'google-sans-regular';
+  font-family: 'google-sans-regular',sans-serif;
   break-inside: avoid;
   word-wrap: break-word;
   cursor: default;
@@ -13,7 +13,7 @@
 
 .note h2 {
   font-size: 1rem;
-  font-family: 'google-sans-medium';
+  font-family: 'google-sans-medium',sans-serif;
   font-weight: 500;
   padding: 0.75rem 1rem 0;
   color: var(--clr-txt-base);
